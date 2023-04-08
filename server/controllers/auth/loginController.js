@@ -14,7 +14,7 @@ const loginUser = async (req, res) => {
     }
 
     const user = await User.findOne({ email: req.body.email });
-    console.log(user);
+
     if (!user) {
       return res
         .status(400)

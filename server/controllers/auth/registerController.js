@@ -1,7 +1,7 @@
 import User from "../../models/User.js";
 import bcrypt from "bcryptjs";
 import registerValidationSchema from "../../validations/authValidation/registerValidationSchema.js";
-import jwt from "jsonwebtoken";
+import Profile from "../../models/Profile.js";
 
 const registerUser = async (req, res) => {
   try {
@@ -33,6 +33,37 @@ const registerUser = async (req, res) => {
     const hashPassword = await bcrypt.hashSync(req.body.password, saltPassword);
 
     const data = await new User({ ...req.body, password: hashPassword }).save();
+
+    const {
+      profilePicture,
+      bio,
+      location,
+      skills,
+      phoneNumber,
+      portfolio,
+      workHours,
+      certifications,
+      linkedin,
+      instagram,
+      facebook,
+    } = req.body;
+
+    const profile = new Profile({
+      userId: data._id,
+      profilePicture: profilePicture,
+      bio: bio,
+      location: location,
+      skills: skills,
+      phoneNumber: phoneNumber,
+      portfolio: portfolio,
+      workHours: workHours,
+      certifications: certifications,
+      linkedin: linkedin,
+      instagram: instagram,
+      facebook: facebook,
+    });
+
+    await profile.save();
 
     res.status(201).json({
       data: data,
