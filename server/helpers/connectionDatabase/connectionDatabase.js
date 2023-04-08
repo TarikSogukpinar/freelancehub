@@ -7,7 +7,7 @@ const connectionMongoDb = () => {
       useUnifiedTopology: true,
       useNewUrlParser: true,
     })
-    .then((res) => console.log(`MongoDB Connected: ${res.connection.host}`))
+    .then((res) => console.log(`MongoDB Connected: ${res.connection.name}`))
     .catch((error) => {
       console.error(`Error: ${error.message}`);
       process.exit(1);
