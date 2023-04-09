@@ -48,7 +48,7 @@ const registerUser = async (req, res) => {
       facebook,
     } = req.body;
 
-    const profile = new Profile({
+    const profileInformation = new Profile({
       userId: data._id,
       profilePicture: profilePicture,
       bio: bio,
@@ -63,9 +63,10 @@ const registerUser = async (req, res) => {
       facebook: facebook,
     });
 
-    await profile.save();
+    await profileInformation.save();
 
     res.status(201).json({
+      error: false,
       data: data,
       message: "Account Created Succesfully!",
     });
