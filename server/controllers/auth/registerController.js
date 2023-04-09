@@ -29,8 +29,8 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const saltPassword = await bcrypt.genSaltSync(10);
-    const hashPassword = await bcrypt.hashSync(req.body.password, saltPassword);
+    const saltPassword = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(req.body.password, saltPassword);
 
     const data = await new User({ ...req.body, password: hashPassword }).save();
 
