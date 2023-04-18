@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
 export default function Navbars() {
-  const [isOpen, toggle] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const toggleDropdown = () => setIsOpen(!isOpen);
   return (
-    <header aria-label="Site Header" className="bg-white">
+    <header aria-label="Site Header" className="bg-indigo-800 dark:bg-gray-900">
       <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-        <a className="block text-teal-600" href="/">
+        <a className="block text-indigo-300 hover:text-gray-500/75 dark:text-teal-300" href="/">
           <span className="sr-only">Home</span>
           <svg
             className="h-8"
@@ -25,7 +26,7 @@ export default function Navbars() {
             <ul className="flex items-center gap-6 text-sm">
               <li>
                 <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
+                  className="text-violet-50 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
                   href="/"
                 >
                   About
@@ -34,7 +35,7 @@ export default function Navbars() {
 
               <li>
                 <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
+                  className="text-violet-50 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
                   href="/"
                 >
                   Careers
@@ -43,7 +44,7 @@ export default function Navbars() {
 
               <li>
                 <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
+                  className="text-violet-50  transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
                   href="/"
                 >
                   History
@@ -52,7 +53,7 @@ export default function Navbars() {
 
               <li>
                 <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
+                  className="text-violet-50  transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
                   href="/"
                 >
                   Services
@@ -61,7 +62,7 @@ export default function Navbars() {
 
               <li>
                 <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
+                  className="text-violet-50  transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
                   href="/"
                 >
                   Projects
@@ -70,7 +71,7 @@ export default function Navbars() {
 
               <li>
                 <a
-                  className="text-gray-500 transition hover:text-gray-500/75"
+                  className="text-violet-50  transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75"
                   href="/"
                 >
                   Blog
@@ -82,37 +83,107 @@ export default function Navbars() {
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
               <a
-                className="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
+                className="hidden rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-gray-700 dark:hover:bg-teal-500 sm:block"
                 href="/"
               >
                 Login
               </a>
 
               <a
-                className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block"
+                className="hidden rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-gray-700 dark:bg-gray-800 dark:text-white dark:hover:text-white/75 sm:block"
                 href="/"
               >
                 Register
               </a>
             </div>
 
-            <button className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden">
-              <span className="sr-only">Toggle menu</span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
+            <div className="md:hidden sm:block relative ">
+              <div className="inline-flex items-center overflow-hidden rounded-md border ">
+               
+
+                <button
+                  onClick={toggleDropdown}
+                  className="bg-indigo-60 h-full p-2  text-white  hover:bg-gray-700"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-4 w-4"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+              {isOpen && (
+                <div
+                  className="absolute end-0 z-10 mt-2 w-56 rounded-md border border-gray-100 bg-white shadow-lg"
+                  role="menu"
+                >
+                  <div className="p-2">
+                    <a
+                      href="#"
+                      className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                      role="menuitem"
+                    >
+                      View on Storefront
+                    </a>
+
+                    <a
+                      href="#"
+                      className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                      role="menuitem"
+                    >
+                      View Warehouse Info
+                    </a>
+
+                    <a
+                      href="#"
+                      className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                      role="menuitem"
+                    >
+                      Duplicate Product
+                    </a>
+
+                    <a
+                      href="#"
+                      className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                      role="menuitem"
+                    >
+                      Unpublish Product
+                    </a>
+
+                    <form method="POST" action="#">
+                      <button
+                        type="submit"
+                        className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-red-700 hover:bg-red-50"
+                        role="menuitem"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-4 w-4"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                          />
+                        </svg>
+                        Delete Product
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

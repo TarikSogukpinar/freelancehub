@@ -3,7 +3,11 @@ import moment from "moment";
 
 const profileSchema = new mongoose.Schema(
   {
-    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
     profilePicture: { type: String },
     bio: { type: String },
     location: { type: String },
