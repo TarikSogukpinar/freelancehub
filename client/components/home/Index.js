@@ -2,6 +2,6 @@ import React from "react";
 
 export default function Index() {
   return (
-   <h1>HELLO</h1>
+   <h1>HOMEPAGE</h1>
   );
 }

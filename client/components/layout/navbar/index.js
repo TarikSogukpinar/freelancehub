@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Link from 'next/link';
 
 export default function Navbars() {
   const [isOpen, setIsOpen] = useState(false);
@@ -82,19 +83,19 @@ export default function Navbars() {
 
           <div className="flex items-center gap-4">
             <div className="sm:flex sm:gap-4">
-              <a
+              <Link
                 className="hidden rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-gray-700 dark:hover:bg-teal-500 sm:block"
-                href="/"
+                href="/auth/login"
               >
                 Login
-              </a>
+              </Link>
 
-              <a
+              <Link
                 className="hidden rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-gray-700 dark:bg-gray-800 dark:text-white dark:hover:text-white/75 sm:block"
-                href="/"
+                href="/auth/register"
               >
                 Register
-              </a>
+              </Link>
             </div>
 
             <div className="md:hidden sm:block relative ">
