@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
+import compression from "compression";
 
 //Custom Modules, Packages, Configs, Etc
 import connectionDatabase from "./helpers/connectionDatabase/connectionDatabase.js";
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
 app.use(cookieParser());
+app.use(compression());
 
 initRoutes(app);
 connectionDatabase();
