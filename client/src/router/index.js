@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeSection from "@/components/HomeSection.vue";
 import LoginSection from "@/components/LoginSection.vue";
+import RegisterSection from "@/components/RegisterSection.vue";
 
 const routes = [
   {
@@ -13,6 +14,11 @@ const routes = [
     component: LoginSection,
     name: "login",
   },
+  {
+    path: "/register",
+    component: RegisterSection,
+    name: "register",
+  },
 ];
 
 const router = createRouter({
@@ -20,7 +26,6 @@ const router = createRouter({
   history: createWebHistory(),
   mode: "history",
   routes, // short for `routes: routes`,
- 
 });
 
 export default router;
