@@ -19,15 +19,15 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const checkUserNameExist = await User.findOne({
-      userName: req.body.userName,
-    });
-    if (checkUserNameExist) {
-      return res.status(400).json({
-        error: true,
-        message: "You cannot register, User Name already exist",
-      });
-    }
+    // const checkUserNameExist = await User.findOne({
+    //   userName: req.body.userName,
+    // });
+    // if (checkUserNameExist) {
+    //   return res.status(400).json({
+    //     error: true,
+    //     message: "You cannot register, User Name already exist",
+    //   });
+    // }
 
     const saltPassword = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(req.body.password, saltPassword);

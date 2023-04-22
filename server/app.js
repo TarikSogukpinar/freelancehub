@@ -12,6 +12,7 @@ import connectionDatabase from "./helpers/connectionDatabase/connectionDatabase.
 import { initRoutes } from "./routes/index.routes.js";
 import initLimit from "./helpers/limiter/rateLimiter.js";
 import initCors from "./helpers/cors/cors.js";
+import cors from "cors";
 
 dotenv.config({
   path: "./.env.local",
@@ -26,10 +27,11 @@ app.use(cookieParser());
 app.use(compression());
 app.use(mongoSanitize());
 app.use(xss());
+app.use(cors())
 
 initRoutes(app);
 initLimit(app);
-initCors(app);
+// initCors(app);
 connectionDatabase();
 
 export const PORT = process.env.PORT || 5000;
