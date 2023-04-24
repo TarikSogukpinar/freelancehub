@@ -27,11 +27,10 @@ app.use(cookieParser());
 app.use(compression());
 app.use(mongoSanitize());
 app.use(xss());
-app.use(cors())
 
 initRoutes(app);
 initLimit(app);
-// initCors(app);
+initCors(app);
 connectionDatabase();
 
 export const PORT = process.env.PORT || 5000;
