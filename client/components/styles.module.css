@@ -1,0 +1,104 @@
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50px;
+  height: 100vh;
+  width: 100%;
+}
+
+.section--1 {
+  background-color: #fff;
+  position: relative;
+}
+
+.section--2 {
+  background-color: #e3e6eb;
+  color: #3c3a42;
+  position: relative;
+}
+
+.section--3 {
+  background-color: #fff;
+  color: #3c3a42;
+  position: relative;
+}
+
+.section--4 {
+  background-color: #e3e6eb;
+  position: relative;
+}
+.section-button-1 {
+  background-color: #ff8b00;
+}
+.section-button-2 {
+  background-color: #f94e4e;
+}
+.section-button-3 {
+  background-color: #7c5dff;
+}
+.section-button-4 {
+  background-color: #00c7ff;
+}
+
+/* Icon stilleri */
+
+.icon {
+  font-size: 4rem;
+}
+
+.icon--1 {
+  color: #ff8b00;
+}
+
+.icon--2 {
+  color: #f94e4e;
+}
+
+.icon--3 {
+  color: #7c5dff;
+}
+
+.icon--4 {
+  color: #00c7ff;
+}
+
+/* Açıklama stilleri */
+
+.description {
+  font-size: 2rem;
+  text-align: center;
+  max-width: 50rem;
+  height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.icon {
+  font-size: 5rem;
+  color: #6c63ff;
+}
+.title {
+  width: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  text-align: center;
+}
+.bButton {
+  background-color: #fe5855;
+  margin-top: 30px;
+}
