@@ -66,10 +66,10 @@ export default function Footer() {
       </div>
       <div className="f-bottom flex justify-between items-center w-full container mx-auto">
         <div className="f-bottom-left flex justify-center items-center">
-          <span> Bionluk Hakkında</span>
-          <span>Üyelik Sözleşmesi</span>
-          <span>Kullanım Şartları</span>
-          <span>Gizlilik ve Kişisel Verilerin Korunması Politikası</span>
+          <span className="mr-4 cursor-pointer text-gray-500 font-bold hover:text-gray-400">Freelancer Hakkında</span>
+          <span className="mr-4 cursor-pointer text-gray-500 font-bold hover:text-gray-400">Üyelik Sözleşmesi</span>
+          <span className="mr-4 cursor-pointer text-gray-500 font-bold hover:text-gray-400">Kullanım Şartları</span>
+          <span className="mr-4 cursor-pointer text-gray-500 font-bold hover:text-gray-400">Gizlilik ve Kişisel Verilerin Korunması Politikası</span>
         </div>
         <div className="f-bottom-right flex justify-center items-center">
           Freelancer A.Ş. © 2022
