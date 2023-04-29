@@ -8,7 +8,7 @@ export default function Navbar() {
           Freelancer
         </span>
       </div>
-      <div className="nv-right text-white">
+      <div className="nv-right text-white mr-4">
         <Link className="px-4 py-2 font-bold bg-red-600 mr-2 " href={"/login"}>
           Giriş
         </Link>
