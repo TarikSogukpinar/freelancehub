@@ -1,21 +1,60 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
 import { Lobster } from "next/font/google";
 import Link from "next/link";
+import axios from "axios";
+import { Flip, ToastContainer, toast } from "react-toastify";
+import { useRouter } from "next/router";
 const lobster = Lobster({ subsets: ["latin"], weight: "400" });
 
 export default function RegisterPage() {
+  const router = useRouter();
   const [registerValue, setRegisterValue] = useState({
     email: "",
     password: "",
     passwordConfirm: "",
     username: "",
-    fullName: "",
+    firstName: "",
+    lastName: "",
   });
+  const [response, setResponse] = useState();
+
+  const generateError = (err) => toast.error(err, { position: "bottom-right" });
+  const generateSuccess = (message) =>
+    toast.success(message, { position: "bottom-right" });
+
   const handleRegister = (e) => {
     setRegisterValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(registerValue);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post("/api/register", {
+        email: registerValue.email,
+        password: registerValue.password,
+        firstName: registerValue.firstName,
+        lastName: registerValue.lastName,
+      });
+      if (data) {
+        if (!data.error) {
+          router.push("/login");
+          generateSuccess(data.message);
+        } else {
+          generateError(data.message);
+        }
+      }
+    } catch (err) {
+      console.log(err.response.data.message);
+      generateError(err.response.data.message);
+    }
+  };
+
+  // useEffect(() => {
+
+  //   return () => {};
+  // }, [response]);
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="header p-5 shadow-lg bg-[#e3e6eb] slate-indigo-500/40 fixed top-0 w-full">
@@ -31,16 +70,26 @@ export default function RegisterPage() {
         >
           Üye Kayıt Sayfası
         </h1>
-        <form className="w-full md:w-2/4">
-          <div className="mb-6">
+        <form className="w-full md:w-2/4" onSubmit={(e) => handleSubmit(e)}>
+          <div className="mb-6 flex justify-between">
             <input
               type="text"
-              id="fullname"
-              name="fullName"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Ad Soyad"
+              id="firstName"
+              name="firstName"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2"
+              placeholder="Ad"
               onChange={handleRegister}
-              value={registerValue.fullName}
+              value={registerValue.firstName}
+              required
+            />
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Soyad"
+              onChange={handleRegister}
+              value={registerValue.lastName}
               required
             />
           </div>
@@ -109,6 +158,7 @@ export default function RegisterPage() {
       <div className="l-footer w-full hidden lg:block">
         <Footer />
       </div>
+      <ToastContainer transition={Flip} autoClose={2000} />
     </div>
   );
 }

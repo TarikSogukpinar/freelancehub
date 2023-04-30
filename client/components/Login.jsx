@@ -3,9 +3,14 @@ import Footer from "./Footer";
 import Link from "next/link";
 import { Button } from "@mui/base";
 import { Lobster } from "next/font/google";
+import { Flip, ToastContainer, toast } from "react-toastify";
+import axios from "axios";
+import { useRouter } from "next/router";
 const lobster = Lobster({ subsets: ["latin"], weight: "400" });
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const [loginValues, setLoginValues] = useState({
     email: "",
     password: "",
@@ -13,7 +18,32 @@ export default function LoginPage() {
   const handleLogin = (e) => {
     setLoginValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(loginValues);
+
+  const generateError = (err) => toast.error(err, { position: "bottom-right" });
+  const generateSuccess = (message) =>
+    toast.success(message, { position: "bottom-right" });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post("/api/login", {
+        email: loginValues.email,
+        password: loginValues.password,
+      });
+      console.log(data);
+      if (data) {
+        if (!data.error) {
+          localStorage.setItem("fr_token", data.tokens);
+          router.push("/profile");
+          generateSuccess(data.message);
+        }
+      }
+    } catch (err) {
+      console.log(err.response);
+      generateError(err.response.data.message);
+    }
+  };
+
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="header p-5 shadow-lg bg-[#e3e6eb] slate-indigo-500/40 fixed top-0 w-full">
@@ -27,12 +57,12 @@ export default function LoginPage() {
         </div>
       </div>
       <div className="main flex flex-col justify-center items-center h-screen w-1/2">
-      <h1
+        <h1
           className={`${lobster.className} mb-5 text-2xl md:text-4xl text-center`}
         >
           Üye Kayıt Sayfası
         </h1>
-        <form className="w-full md:w-2/4">
+        <form className="w-full md:w-2/4" onSubmit={handleSubmit}>
           <div className="mb-6">
             <input
               type="email"
@@ -64,7 +94,6 @@ export default function LoginPage() {
                 type="checkbox"
                 defaultValue
                 className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-                required
               />
             </div>
             <label
@@ -94,6 +123,7 @@ export default function LoginPage() {
       <div className="l-footer w-full">
         <Footer />
       </div>
+      <ToastContainer transition={Flip} autoClose={2000} />
     </div>
   );
 }
