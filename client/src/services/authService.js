@@ -8,7 +8,7 @@ export const registerUser = async (
   confirmPassword
 ) => {
   return await axios.post(
-    `${process.env.SERVER_HOST}/api/auth/register`,
+    `/api/register`,
     {
       firstName,
       lastName,
@@ -22,7 +22,7 @@ export const registerUser = async (
 
 export const loginUser = async (email, password) => {
   return await axios.post(
-    `${process.env.SERVER_HOST}/api/auth/login`,
+    `/api/login`,
     {
       email,
       password,
@@ -32,7 +32,7 @@ export const loginUser = async (email, password) => {
 };
 
 export const logoutUser = async () => {
-  return await axios.get(`${process.env.SERVER_HOST}/api/auth/logout`, {
+  return await axios.get(`/api/logout`, {
     credentials: "include",
     withCredentials: true,
   });
