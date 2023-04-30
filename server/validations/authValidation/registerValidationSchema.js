@@ -14,6 +14,11 @@ const registerValidationSchema = (body) => {
       upperCase: 1,
       requirementCount: 1,
     }).label("Password"),
+    confirmPassword: Joi.any()
+      .equal(Joi.ref("password"))
+      .required()
+      .label("Confirm password")
+      .messages({ "any.only": "{{#label}} does not match" }),
   });
   return schema.validate(body);
 };

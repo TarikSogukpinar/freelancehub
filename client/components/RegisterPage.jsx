@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Footer from "./Footer";
 import { Lobster } from "next/font/google";
 import Link from "next/link";
 import axios from "axios";
 import { Flip, ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
+import { registerUser } from "@/services/authService";
 const lobster = Lobster({ subsets: ["latin"], weight: "400" });
 
 export default function RegisterPage() {
@@ -12,7 +13,7 @@ export default function RegisterPage() {
   const [registerValue, setRegisterValue] = useState({
     email: "",
     password: "",
-    passwordConfirm: "",
+    confirmPassword: "",
     username: "",
     firstName: "",
     lastName: "",
@@ -30,30 +31,47 @@ export default function RegisterPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/register", {
-        email: registerValue.email,
-        password: registerValue.password,
-        firstName: registerValue.firstName,
-        lastName: registerValue.lastName,
-      });
-      if (data) {
-        if (!data.error) {
-          router.push("/login");
-          generateSuccess(data.message);
-        } else {
-          generateError(data.message);
-        }
-      }
+      await registerUser(
+        registerValue.firstName,
+        registerUser.lastName,
+        registerUser.username,
+        registerUser.email,
+        registerUser.password,
+        registerUser.confirmPassword
+      )
+        .then((res) => {
+          if (res.data) {
+            if (!res.data.error) {
+              router.push("/login");
+              generateSuccess(res.data.message);
+            } else {
+              generateError(res.data.message);
+            }
+          }
+        })
+        .catch((err) => {
+          generateError(err.response.data.message);
+        });
+
+      // const { data } = await axios.post("/api/register", {
+      //   email: registerValue.email,
+      //   password: registerValue.password,
+      //   firstName: registerValue.firstName,
+      //   lastName: registerValue.lastName,
+      // });
+      // if (data) {
+      //   if (!data.error) {
+      //     router.push("/login");
+      //     generateSuccess(data.message);
+      //   } else {
+      //     generateError(data.message);
+      //   }
+      // }
     } catch (err) {
       console.log(err.response.data.message);
       generateError(err.response.data.message);
     }
   };
-
-  // useEffect(() => {
-
-  //   return () => {};
-  // }, [response]);
 
   return (
     <div className="flex flex-col justify-center items-center">
@@ -93,18 +111,7 @@ export default function RegisterPage() {
               required
             />
           </div>
-          <div className="mb-6">
-            <input
-              type="text"
-              id="username"
-              name="username"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Kullanıcı Adı"
-              required
-              onChange={handleRegister}
-              value={registerValue.username}
-            />
-          </div>
+
           <div className="mb-6">
             <input
               type="email"
@@ -132,13 +139,13 @@ export default function RegisterPage() {
           <div className="mb-6">
             <input
               type="password"
-              id="passwordConfirm"
-              name="passwordConfirm"
+              id="confirmPassword"
+              name="confirmPassword"
               placeholder="Şifreni Doğrula"
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
               required
               onChange={handleRegister}
-              value={registerValue.passwordConfirm}
+              value={registerValue.confirmPassword}
             />
           </div>
           <button

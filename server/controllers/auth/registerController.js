@@ -4,6 +4,7 @@ import registerValidationSchema from "../../validations/authValidation/registerV
 import Profile from "../../models/Profile.js";
 
 const registerUser = async (req, res) => {
+  const { email, password, confirmPassword } = req.body;
   try {
     const { error } = registerValidationSchema(req.body);
     if (error) {
@@ -11,7 +12,7 @@ const registerUser = async (req, res) => {
         .status(400)
         .json({ error: true, message: error.details[0].message });
     }
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email });
     if (user) {
       return res.status(400).json({
         error: true,
@@ -19,20 +20,20 @@ const registerUser = async (req, res) => {
       });
     }
 
-    // const checkUserNameExist = await User.findOne({
-    //   userName: req.body.userName,
-    // });
-    // if (checkUserNameExist) {
-    //   return res.status(400).json({
-    //     error: true,
-    //     message: "You cannot register, User Name already exist",
-    //   });
-    // }
-
     const saltPassword = await bcrypt.genSalt(10);
-    const hashPassword = await bcrypt.hash(req.body.password, saltPassword);
+    const hashPassword = await bcrypt.hash(password, saltPassword);
+    const hashConfirmPassword = await bcrypt.hash(
+      confirmPassword,
+      saltPassword
+    );
 
-    const data = await new User({ ...req.body, password: hashPassword }).save();
+    const data = new User({
+      ...req.body,
+      password: hashPassword,
+      confirmPassword: hashConfirmPassword,
+    });
+
+    await data.save();
 
     const {
       profilePicture,
