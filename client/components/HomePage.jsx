@@ -8,7 +8,6 @@ import {
   ConnectWithoutContact,
   Work,
 } from "@mui/icons-material";
-import Sections from "./Sections";
 import Footer from "./Footer";
 import Image from "next/image";
 import Link from "next/link";
@@ -104,18 +103,7 @@ export default function HomePage() {
       </Head>
       <Navbar />
       <main>
-        {/* {sections.map((item) => {
-          return (
-            <Sections
-              key={item.sectionNumber}
-              sectionNumber={item.sectionNumber}
-              description={item.description}
-              title={item.title}
-              icon={item.icon}
-              buttonName={item.buttonName}
-            />
-          );
-        })} */}
+       
         <section className="m-0 p-0">
           <div className="px-6 py-16 w-full flex flex-col justify-center items-center">
             <div className="section-top mb-16 flex flex-col justify-start items-center w-3/4">
