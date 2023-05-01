@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Flip, ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { registerUser } from "@/services/authService";
+import Navbar from "./Navbar";
 const lobster = Lobster({ subsets: ["latin"], weight: "400" });
 
 export default function RegisterPage() {
@@ -71,98 +72,146 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="header p-5 shadow-lg bg-[#e3e6eb] slate-indigo-500/40 fixed top-0 w-full">
-        <div className="nv-left m-0 p-0 flex flex-col justify-center items-center leading-none font-extrabold cursor-pointer text-3xl">
-          <span className=" text-red-600 m-0 pb-0 pr-0 w-full flex justify-center items-center">
-            Freelancer
-          </span>
-        </div>
-      </div>
-      <div className="main flex flex-col justify-center items-center h-screen w-1/2">
-        <h1
-          className={`${lobster.className} mb-5 text-2xl md:text-4xl text-center`}
-        >
-          Üye Kayıt Sayfası
-        </h1>
-        <form className="w-full md:w-2/4" onSubmit={(e) => handleSubmit(e)}>
-          <div className="mb-6 flex justify-between">
+    <div className="flex flex-col justify-between items-center h-screen">
+      <Navbar />
+      <div className="w-full flex justify-center items-center max-w-sm p-4 my-20 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-indigo-900 dark:border-gray-700">
+        <form className="space-y-6 w-3/4" action="#">
+          <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+            Freelancer&apos;a Kaydolun
+          </h5>
+          <div>
+            <div className="mr-2">
+              <label
+                htmlFor="firstName"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Ad
+              </label>
+              <input
+                type="text"
+                name="firstName"
+                id="firstName"
+                className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
+                placeholder="Ad"
+                required
+                value={registerValue.firstName}
+                onChange={handleRegister}
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="firstName"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+              >
+                Soyad
+              </label>
+              <input
+                type="text"
+                name="lastName"
+                id="lastName"
+                className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
+                placeholder="Soyad"
+                required
+                value={registerValue.lastName}
+                onChange={handleRegister}
+              />
+            </div>
+          </div>
+          {/* <div>
+            <label
+              htmlFor="username"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              E-Posta
+            </label>
             <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500 mr-2"
-              placeholder="Ad"
-              onChange={handleRegister}
-              value={registerValue.firstName}
+              type="username"
+              name="username"
+              id="username"
+              className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
+              placeholder="isim@mail.com"
               required
+              value={registerValue.username}
+              onChange={handleRegister}
             />
+          </div> */}
+          <div>
+            <label
+              htmlFor="email"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              E-Posta
+            </label>
             <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Soyad"
-              onChange={handleRegister}
-              value={registerValue.lastName}
+              type="email"
+              name="email"
+              id="email"
+              className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
+              placeholder="mail@mail.com"
               required
+              value={registerValue.email}
+              onChange={handleRegister}
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="password"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Şifre
+            </label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="••••••••"
+              className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
+              required
+              value={registerValue.password}
+              onChange={handleRegister}
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="confirmPassword"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Şifreyi Onayla
+            </label>
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              placeholder="••••••••"
+              className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
+              required
+              value={registerValue.confirmPassword}
+              onChange={handleRegister}
             />
           </div>
 
-          <div className="mb-6">
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Email"
-              required
-              onChange={handleRegister}
-              value={registerValue.email}
-            />
-          </div>
-          <div className="mb-6">
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Şifre"
-              required
-              onChange={handleRegister}
-              value={registerValue.password}
-            />
-          </div>
-          <div className="mb-6">
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              placeholder="Şifreni Doğrula"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              required
-              onChange={handleRegister}
-              value={registerValue.confirmPassword}
-            />
-          </div>
           <button
             type="submit"
-            className="text-white bg-blue-700 hover:bg-blue-800 w-full focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Kayıt Ol
-          </button>
-          <Link
-            href={"/login"}
-            className="font-bold bg-red-600 mt-4 px-5 py-2.5 w-full flex justify-center text-center text-white"
+            className="w-full text-white bg-lime-700 hover:bg-lime-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-700 dark:hover:bg-lime-900 dark:focus:ring-lime-900"
           >
             Giriş Yap
-          </Link>
+          </button>
+          <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+            Kayıtlı mısın?{" "}
+            <Link
+              href="/login"
+              className="text-lime-600 hover:underline dark:text-lime-600"
+            >
+              Giriş Yap
+            </Link>
+          </div>
         </form>
       </div>
-      <div className="l-footer w-full hidden lg:block">
+
+      <div className="w-full">
         <Footer />
+        <ToastContainer transition={Flip} autoClose={2000} />
       </div>
-      <ToastContainer transition={Flip} autoClose={2000} />
     </div>
   );
 }

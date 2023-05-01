@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from "react";
 import Footer from "./Footer";
 import Link from "next/link";
@@ -6,6 +7,7 @@ import { Lobster } from "next/font/google";
 import { Flip, ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useRouter } from "next/router";
+import Navbar from "./Navbar";
 const lobster = Lobster({ subsets: ["latin"], weight: "400" });
 
 export default function LoginPage() {
@@ -45,85 +47,130 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="header p-5 shadow-lg bg-[#e3e6eb] slate-indigo-500/40 fixed top-0 w-full">
-        <div className="nv-left m-0 p-0 flex flex-col justify-center items-center leading-none font-extrabold cursor-pointer text-3xl">
-          <Link
-            href={"/"}
-            className=" text-red-600 m-0 pb-0 pr-0 w-full flex justify-center items-center"
-          >
-            Freelancer
-          </Link>
-        </div>
-      </div>
-      <div className="main flex flex-col justify-center items-center h-screen w-1/2">
-        <h1
-          className={`${lobster.className} mb-5 text-2xl md:text-4xl text-center`}
-        >
-          Üye Kayıt Sayfası
-        </h1>
-        <form className="w-full md:w-2/4" onSubmit={handleSubmit}>
-          <div className="mb-6">
+    <div className="flex flex-col justify-between items-center h-screen">
+      <Navbar />
+      <div className="w-full flex justify-center items-center max-w-sm p-4 my-20 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-indigo-900 dark:border-gray-700">
+        <form className="space-y-6 w-3/4" action="#">
+          <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+            Freelancer'a Giriş Yapın
+          </h5>
+          <div>
+            <label
+              htmlFor="email"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              E-Posta
+            </label>
             <input
               type="email"
-              id="email"
               name="email"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
-              placeholder="Email"
+              id="email"
+              className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
+              placeholder="isim@mail.com"
               required
               value={loginValues.email}
               onChange={handleLogin}
             />
           </div>
-          <div className="mb-6">
+          <div>
+            <label
+              htmlFor="password"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Şifre
+            </label>
             <input
               type="password"
-              id="password"
               name="password"
-              placeholder="Şifre"
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:border-gray-600 dark:placeholder-gray-400 dark:text-black dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              id="password"
+              placeholder="••••••••"
+              className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
               required
               value={loginValues.password}
               onChange={handleLogin}
             />
           </div>
-          <div className="flex items-start mb-6">
-            <div className="flex items-center">
-              <input
-                id="remember"
-                type="checkbox"
-                defaultValue
-                className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-              />
+          <div className="flex items-start">
+            <div className="flex items-start">
+              <div className="flex items-center h-5">
+                <input
+                  id="remember"
+                  type="checkbox"
+                  defaultValue
+                  className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+                  required
+                />
+              </div>
+              <label
+                htmlFor="remember"
+                className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Oturumu Hatırla
+              </label>
             </div>
-            <label
-              htmlFor="remember"
-              className="ml-2 text-sm font-medium text-gray-900 dark:text-black"
+            <a
+              href="#"
+              className="ml-auto text-sm text-lime-600 hover:underline dark:text-lime-600"
             >
-              Oturumu hatırla
-            </label>
+              Şifremi Unuttum?
+            </a>
           </div>
-
-          <Link
-            className="text-white font-bold bg-blue-700 hover:bg-blue-800 w-full focus:ring-4 focus:outline-none focus:ring-blue-300 px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 flex flex-center justify-center"
-            href={"/register"}
+          <button
+            type="submit"
+            className="w-full text-white bg-lime-700 hover:bg-lime-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-700 dark:hover:bg-lime-900 dark:focus:ring-lime-900"
           >
-            Kayıt Ol
-          </Link>
-          <div className="py-4 w-full flex justify-center">
-            <Button
-              type="submit"
-              className="font-bold bg-red-600 px-5 py-2.5 w-full flex justify-center text-center text-white"
+            Giriş Yap
+          </button>
+          <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
+            Kayıtlı Değil misin?{" "}
+            <Link
+              href="/register"
+              className="text-lime-600 hover:underline dark:text-lime-600"
             >
-              Giriş Yap
-            </Button>
+              Kaydol
+            </Link>
           </div>
         </form>
       </div>
-      <div className="l-footer w-full">
+
+      <div className="w-full">
+        {/* <section className="footer flex flex-col justify-start items-center bg-indigo-900 dark:bg-indigo-900 min-h-64 text-white p-2">
+          <div className="f-top container mx-auto self-start w-full">
+            <div className="nv-left m-0 p-0 flex flex-col justify-start items-baseline leading-none font-extrabold cursor-pointer text-3xl">
+              <span className=" text-lime-500 border-b-2 border-white m-0 pb-0 pr-0 w-full flex justify-between items-end">
+                Freelancer
+                <span className="text-sm pl-5 text-white hidden md:block">
+                  Binlerce iş ilanına kolayca göz atın ve sadece birkaç tıklama
+                  ile başvurun. İş aramak hiç bu kadar kolay olmamıştı!
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div className="f-bottom flex justify-between items-center w-full container mx-auto">
+            <div className="f-bottom-left flex flex-col md:flex-row justify-start md:justify-center items-start md:items-center">
+              <span className="mr-4 cursor-pointer text-gray-500 font-bold hover:text-gray-400">
+                Freelancer Hakkında
+              </span>
+              <span className="mr-4 cursor-pointer text-gray-500 font-bold hover:text-gray-400">
+                Üyelik Sözleşmesi
+              </span>
+              <span className="mr-4 cursor-pointer text-gray-500 font-bold hover:text-gray-400">
+                Kullanım Şartları
+              </span>
+              <span className="mr-4 cursor-pointer text-gray-500 font-bold hover:text-gray-400">
+                Gizlilik ve Kişisel Verilerin Korunması Politikası
+              </span>
+            </div>
+            <div className="f-bottom-right flex justify-center items-center">
+              Freelancer A.Ş. © 2022
+            </div>
+          </div>
+        </section> */}
         <Footer />
+        <ToastContainer transition={Flip} autoClose={2000} />
       </div>
-      <ToastContainer transition={Flip} autoClose={2000} />
+    
     </div>
   );
 }
