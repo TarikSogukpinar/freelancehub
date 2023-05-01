@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Footer from "./Footer";
 import { Lobster } from "next/font/google";
 import Link from "next/link";
-import axios from "axios";
 import { Flip, ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { registerUser } from "@/services/authService";
@@ -41,9 +40,9 @@ export default function RegisterPage() {
           if (res.data) {
             if (!res.data.error) {
               router.push("/login");
-              generateSuccess(res);
+              generateSuccess(res.message);
             } else {
-              generateError(res);
+              generateError(res.message);
             }
           }
         })
