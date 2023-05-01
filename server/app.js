@@ -6,13 +6,13 @@ import cookieParser from "cookie-parser";
 import compression from "compression";
 import mongoSanitize from "express-mongo-sanitize";
 import xss from "xss-clean";
+import cors from "cors";
 
 //Custom Modules, Packages, Configs, Etc
 import connectionDatabase from "./helpers/connectionDatabase/connectionDatabase.js";
 import { initRoutes } from "./routes/index.routes.js";
 import initLimit from "./helpers/limiter/rateLimiter.js";
-import initCors from "./helpers/cors/cors.js";
-
+import corsOption from "./helpers/cors/corsOption.js"; 
 
 dotenv.config({
   path: "./.env.local",
@@ -27,10 +27,11 @@ app.use(cookieParser());
 app.use(compression());
 app.use(mongoSanitize());
 app.use(xss());
+app.use(cors(corsOption));
 
 initRoutes(app);
 initLimit(app);
-initCors(app);
+
 connectionDatabase();
 
 export const PORT = process.env.PORT || 5000;

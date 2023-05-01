@@ -14,7 +14,6 @@ export default function RegisterPage() {
     email: "",
     password: "",
     confirmPassword: "",
-    username: "",
     firstName: "",
     lastName: "",
   });
@@ -33,24 +32,23 @@ export default function RegisterPage() {
     try {
       await registerUser(
         registerValue.firstName,
-        registerUser.lastName,
-        registerUser.username,
-        registerUser.email,
-        registerUser.password,
-        registerUser.confirmPassword
+        registerValue.lastName,
+        registerValue.email,
+        registerValue.password,
+        registerValue.confirmPassword
       )
         .then((res) => {
           if (res.data) {
             if (!res.data.error) {
               router.push("/login");
-              generateSuccess(res.data.message);
+              generateSuccess(res);
             } else {
-              generateError(res.data.message);
+              generateError(res);
             }
           }
         })
         .catch((err) => {
-          generateError(err.response.data.message);
+          generateError(err.response);
         });
 
       // const { data } = await axios.post("/api/register", {
@@ -68,8 +66,8 @@ export default function RegisterPage() {
       //   }
       // }
     } catch (err) {
-      console.log(err.response.data.message);
-      generateError(err.response.data.message);
+      console.log(err.response);
+      generateError(err.response);
     }
   };
 
