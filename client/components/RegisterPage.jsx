@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import Footer from "./Footer";
-import { Lobster } from "next/font/google";
 import Link from "next/link";
-import { Flip, ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { registerUser } from "@/services/authService";
 import Navbar from "./Navbar";
 import toast, { Toaster } from "react-hot-toast";
-const lobster = Lobster({ subsets: ["latin"], weight: "400" });
 
 export default function RegisterPage() {
   const router = useRouter();
+
   const [registerValue, setRegisterValue] = useState({
     email: "",
     password: "",
@@ -18,12 +16,15 @@ export default function RegisterPage() {
     firstName: "",
     lastName: "",
   });
-  const notify = (message) => toast(message);
-  const [response, setResponse] = useState();
 
-  const generateError = (err) => toast.error(err, { position: "bottom-right" });
-  const generateSuccess = (message) =>
-    toast.success(message, { position: "bottom-right" });
+  const notifySuccess = (message) =>
+    toast.success(message, {
+      position: "bottom-center",
+      duration: 3000,
+    });
+
+  const notifyError = (message) =>
+    toast.error(message, { position: "bottom-center", duration: 3000 });
 
   const handleRegister = (e) => {
     setRegisterValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -40,21 +41,19 @@ export default function RegisterPage() {
         registerValue.confirmPassword
       )
         .then((res) => {
-          if (res.data) {
-            if (!res.data.error) {
-              router.push("/login");
-              generateSuccess(res.message);
-            } else {
-              generateError(res.message);
-            }
+          if (!res.error) {
+            notifySuccess("Login Successfull");
+            setTimeout(() => {
+              router.push("/");
+            }, 3500);
           }
         })
-        .catch((err) => {
-          generateError(err.response);
+        .catch((error) => {
+          console.log(error.response.data.message);
+          notifyError(error.response.data.message);
         });
-    } catch (err) {
-      console.log(err.response);
-      generateError(err.response);
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -62,6 +61,7 @@ export default function RegisterPage() {
     <div className="flex flex-col justify-between items-center h-screen">
       <Navbar />
       <div className="w-full flex justify-center items-center max-w-sm p-4 my-20 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-indigo-900 dark:border-gray-700">
+        <Toaster position="bottom-center" reverseOrder={false} />
         <form className="space-y-6 w-3/4" action="#">
           <h5
             onSubmit={handleSubmit}
@@ -200,7 +200,7 @@ export default function RegisterPage() {
 
       <div className="w-full">
         <Footer />
-        <ToastContainer transition={Flip} autoClose={2000} />
+       
       </div>
     </div>
   );

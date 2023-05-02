@@ -1,14 +1,10 @@
-/* eslint-disable react/no-unescaped-entities */
 import React, { useState } from "react";
 import Footer from "./Footer";
 import Link from "next/link";
-import { Button } from "@mui/base";
-import { Lobster } from "next/font/google";
-import { Flip, ToastContainer, toast } from "react-toastify";
-import axios from "axios";
 import { useRouter } from "next/router";
 import Navbar from "./Navbar";
-const lobster = Lobster({ subsets: ["latin"], weight: "400" });
+import toast, { Toaster } from "react-hot-toast";
+import { loginUser } from "@/services/authService";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -21,28 +17,32 @@ export default function LoginPage() {
     setLoginValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const generateError = (err) => toast.error(err, { position: "bottom-right" });
-  const generateSuccess = (message) =>
-    toast.success(message, { position: "bottom-right" });
+  const notifySuccess = (message) =>
+    toast.success(message, {
+      position: "bottom-center",
+      duration: 3000,
+    });
+  const notifyError = (message) =>
+    toast.error(message, { position: "bottom-center", duration: 3000 });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post("/api/login", {
-        email: loginValues.email,
-        password: loginValues.password,
-      });
-      console.log(data);
-      if (data) {
-        if (!data.error) {
-          localStorage.setItem("fr_token", data.tokens);
-          router.push("/profile");
-          generateSuccess(data.message);
-        }
-      }
-    } catch (err) {
-      console.log(err.response);
-      generateError(err.response.data.message);
+      await loginUser(loginValues.email, loginValues.password)
+        .then((res) => {
+          if (!res.error) {
+            notifySuccess("Login Successfull");
+            setTimeout(() => {
+              router.push("/");
+            }, 3500);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response.data.message);
+          notifyError(error.response.data.message);
+        });
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -50,7 +50,8 @@ export default function LoginPage() {
     <div className="flex flex-col justify-between items-center h-screen">
       <Navbar />
       <div className="w-full flex justify-center items-center max-w-sm p-4 my-20 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-indigo-900 dark:border-gray-700">
-        <form className="space-y-6 w-3/4" action="#">
+        <Toaster position="bottom-center" reverseOrder={false} />
+        <form onSubmit={handleSubmit} className="space-y-6 w-3/4" action="#">
           <h5 className="text-xl font-medium text-gray-900 dark:text-white">
             Freelancer'a Giriş Yapın
           </h5>
@@ -168,9 +169,7 @@ export default function LoginPage() {
           </div>
         </section> */}
         <Footer />
-        <ToastContainer transition={Flip} autoClose={2000} />
       </div>
-    
     </div>
   );
 }

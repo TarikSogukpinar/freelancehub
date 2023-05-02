@@ -4,11 +4,11 @@ export default function Stars({ point }) {
   const [star, setStar] = useState(
     new Array(Math.ceil(point)).fill(Math.ceil(point))
   );
-  console.log(star);
+  // console.log(star);
   return (
     <>
       {star.map((s, i) => {
-        console.log("first");
+        // console.log("first");
         return (
           <span key={i}>
             <title>{i}</title>
