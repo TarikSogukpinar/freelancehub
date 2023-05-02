@@ -44,7 +44,7 @@ export default function RegisterPage() {
           if (!res.error) {
             notifySuccess("Login Successfull");
             setTimeout(() => {
-              router.push("/");
+              router.push("/login");
             }, 3500);
           }
         })
@@ -62,11 +62,8 @@ export default function RegisterPage() {
       <Navbar />
       <div className="w-full flex justify-center items-center max-w-sm p-4 my-20 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-indigo-900 dark:border-gray-700">
         <Toaster position="bottom-center" reverseOrder={false} />
-        <form className="space-y-6 w-3/4" action="#">
-          <h5
-            onSubmit={handleSubmit}
-            className="text-xl font-medium text-gray-900 dark:text-white"
-          >
+        <form onSubmit={handleSubmit} className="space-y-6 w-3/4" action="#">
+          <h5 className="text-xl font-medium text-gray-900 dark:text-white">
             Freelancer&apos;a Kaydolun
           </h5>
           <div>
@@ -90,7 +87,7 @@ export default function RegisterPage() {
             </div>
             <div>
               <label
-                htmlFor="firstName"
+                htmlFor="lastName"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
                 Soyad
@@ -107,24 +104,7 @@ export default function RegisterPage() {
               />
             </div>
           </div>
-          {/* <div>
-            <label
-              htmlFor="username"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              E-Posta
-            </label>
-            <input
-              type="username"
-              name="username"
-              id="username"
-              className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
-              placeholder="isim@mail.com"
-              required
-              value={registerValue.username}
-              onChange={handleRegister}
-            />
-          </div> */}
+
           <div>
             <label
               htmlFor="email"
@@ -200,7 +180,6 @@ export default function RegisterPage() {
 
       <div className="w-full">
         <Footer />
-       
       </div>
     </div>
   );

@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import {
   Facebook,
   GitHub,
@@ -27,7 +26,10 @@ export default function Footer() {
               </h2>
               <ul className="text-gray-600 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <Link href="/" className="hover:underline hover:text-lime-700">
+                  <Link
+                    href="/"
+                    className="hover:underline hover:text-lime-700"
+                  >
                     Freelancer
                   </Link>
                 </li>
@@ -70,12 +72,18 @@ export default function Footer() {
               </h2>
               <ul className="text-gray-600 dark:text-gray-400 font-medium">
                 <li className="mb-4">
-                  <Link href="/" className="hover:underline hover:text-lime-700">
+                  <Link
+                    href="/"
+                    className="hover:underline hover:text-lime-700"
+                  >
                     Privacy Policy
                   </Link>
                 </li>
                 <li>
-                  <Link href="/" className="hover:underline hover:text-lime-700">
+                  <Link
+                    href="/"
+                    className="hover:underline hover:text-lime-700"
+                  >
                     Terms &amp; Conditions
                   </Link>
                 </li>
