@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import Head from "next/head";
 import Navbar from "./Navbar";
 import { useState } from "react";
@@ -103,7 +102,6 @@ export default function HomePage() {
       </Head>
       <Navbar />
       <main>
-       
         <section className="m-0 p-0">
           <div className="px-6 py-16 w-full flex flex-col justify-center items-center">
             <div className="section-top mb-16 flex flex-col justify-start items-center w-3/4">
@@ -188,41 +186,44 @@ export default function HomePage() {
             </div>
           </div>
         </section>
-        <section class="bg-white dark:bg-white">
-          <div class="flex justify-center items-center lg:grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-            <div class=" place-self-center lg:col-span-7">
-              <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-indigo-900">
+        <section className="bg-white dark:bg-white">
+          <div className="flex justify-center items-center lg:grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+            <div className=" place-self-center lg:col-span-7">
+              <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-indigo-900">
                 Şirketler İçin Serbest Çalışanlar
               </h1>
-              <p class="max-w-2xl mb-6 font-light text-black lg:mb-8 md:text-lg lg:text-xl dark:text-black">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores eaque, laudantium, harum commodi, fugit quaerat suscipit vero beatae velit nesciunt fuga repellendus culpa! Dolorum porro est distinctio dolor perspiciatis numquam?
+              <p className="max-w-2xl mb-6 font-light text-black lg:mb-8 md:text-lg lg:text-xl dark:text-black">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Asperiores eaque, laudantium, harum commodi, fugit quaerat
+                suscipit vero beatae velit nesciunt fuga repellendus culpa!
+                Dolorum porro est distinctio dolor perspiciatis numquam?
               </p>
               <Link
                 href="/login"
-                class="inline-flex items-center justify-center px-5 py-3 mr-3 text-base text-center text-indigo-900 font-extrabold rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+                className="inline-flex items-center justify-center px-5 py-3 mr-3 text-base text-center text-indigo-900 font-extrabold rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
               >
                 Hemen Başlayın
                 <svg
-                  class="w-5 h-5 ml-2 -mr-1"
+                  className="w-5 h-5 ml-2 -mr-1"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
                 >
                   <path
-                    fill-rule="evenodd"
+                    fillRule="evenodd"
                     d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
+                    clipRule="evenodd"
                   ></path>
                 </svg>
               </Link>
               <Link
                 href="/login"
-                class="inline-flex items-center justify-center px-5 py-3 text-base text-center text-indigo-900 border border-indigo-900 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-indigo-900 font-bold hover:dark:text-white dark:border-indigo-900 dark:hover:bg-indigo-900 dark:focus:ring-gray-800"
+                className="inline-flex items-center justify-center px-5 py-3 text-base text-center text-indigo-900 border border-indigo-900 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 dark:text-indigo-900 font-bold hover:dark:text-white dark:border-indigo-900 dark:hover:bg-indigo-900 dark:focus:ring-gray-800"
               >
                 Freelancerlar ile konuşun
               </Link>
             </div>
-            <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+            <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
               <Image
                 src="/images/hero-1.png"
                 alt="mockup"

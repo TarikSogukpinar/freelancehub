@@ -6,6 +6,7 @@ import { Flip, ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { registerUser } from "@/services/authService";
 import Navbar from "./Navbar";
+import toast, { Toaster } from "react-hot-toast";
 const lobster = Lobster({ subsets: ["latin"], weight: "400" });
 
 export default function RegisterPage() {
@@ -17,6 +18,7 @@ export default function RegisterPage() {
     firstName: "",
     lastName: "",
   });
+  const notify = (message) => toast(message);
   const [response, setResponse] = useState();
 
   const generateError = (err) => toast.error(err, { position: "bottom-right" });
@@ -50,21 +52,6 @@ export default function RegisterPage() {
         .catch((err) => {
           generateError(err.response);
         });
-
-      // const { data } = await axios.post("/api/register", {
-      //   email: registerValue.email,
-      //   password: registerValue.password,
-      //   firstName: registerValue.firstName,
-      //   lastName: registerValue.lastName,
-      // });
-      // if (data) {
-      //   if (!data.error) {
-      //     router.push("/login");
-      //     generateSuccess(data.message);
-      //   } else {
-      //     generateError(data.message);
-      //   }
-      // }
     } catch (err) {
       console.log(err.response);
       generateError(err.response);
@@ -76,7 +63,10 @@ export default function RegisterPage() {
       <Navbar />
       <div className="w-full flex justify-center items-center max-w-sm p-4 my-20 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-indigo-900 dark:border-gray-700">
         <form className="space-y-6 w-3/4" action="#">
-          <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+          <h5
+            onSubmit={handleSubmit}
+            className="text-xl font-medium text-gray-900 dark:text-white"
+          >
             Freelancer&apos;a Kaydolun
           </h5>
           <div>
