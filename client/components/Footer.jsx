@@ -1,10 +1,3 @@
-import {
-  Facebook,
-  GitHub,
-  Instagram,
-  LinkedIn,
-  Twitter,
-} from "@mui/icons-material";
 import Link from "next/link";
 
 export default function Footer() {

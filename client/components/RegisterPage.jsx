@@ -67,42 +67,40 @@ export default function RegisterPage() {
             Freelancer&apos;a Kaydolun
           </h5>
           <div>
-            <div className="mr-2">
-              <label
-                htmlFor="firstName"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Ad
-              </label>
-              <input
-                type="text"
-                name="firstName"
-                id="firstName"
-                className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
-                placeholder="Ad"
-                required
-                value={registerValue.firstName}
-                onChange={handleRegister}
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="lastName"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Soyad
-              </label>
-              <input
-                type="text"
-                name="lastName"
-                id="lastName"
-                className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
-                placeholder="Soyad"
-                required
-                value={registerValue.lastName}
-                onChange={handleRegister}
-              />
-            </div>
+            <label
+              htmlFor="firstName"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Ad
+            </label>
+            <input
+              type="text"
+              name="firstName"
+              id="firstName"
+              className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
+              placeholder="Ad"
+              required
+              value={registerValue.firstName}
+              onChange={handleRegister}
+            />
+          </div>
+          <div>
+            <label
+              htmlFor="lastName"
+              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Soyad
+            </label>
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              className="bg-gray-50 border border-lime-700 text-gray-900 text-sm rounded-lg block w-full p-2.5  dark:text-indigo-900"
+              placeholder="Soyad"
+              required
+              value={registerValue.lastName}
+              onChange={handleRegister}
+            />
           </div>
 
           <div>
