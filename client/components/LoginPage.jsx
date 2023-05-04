@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Footer from "./Footer";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Navbar from "./Navbar";
 import toast, { Toaster } from "react-hot-toast";
 import { loginUser } from "@/services/authService";
+import Cookies from "js-cookie";
 
 export default function LoginPage() {
+  // useEffect(() => {
+  //   console.log(Cookies.get("token"))
+  // });
+
   const router = useRouter();
 
   const [loginValues, setLoginValues] = useState({
@@ -35,6 +40,7 @@ export default function LoginPage() {
             setTimeout(() => {
               router.push("/");
             }, 3500);
+            console.log("tokeeeeen", Cookies.get("token"));
           }
         })
         .catch((error) => {

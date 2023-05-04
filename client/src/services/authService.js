@@ -1,5 +1,6 @@
 import axios from "axios";
 
+
 export const registerUser = async (
   firstName,
   lastName,
@@ -27,7 +28,10 @@ export const loginUser = async (email, password) => {
       email,
       password,
     },
-    { withCredentials: true }
+    {
+      withCredentials: true,
+     
+    }
   );
 };
 

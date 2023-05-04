@@ -46,11 +46,12 @@ const loginUser = async (req, res) => {
 
     const cookieOptions = {
       httpOnly: true,
-      secure: false,
-      sameSite: "None", //cross-site cookie
+      secure: true,
+      sameSite: "Lax", //cross-site cookie
       maxAge: 60 * 60 * 24 * 1000,
     };
 
+ 
     res.cookie("token", token, cookieOptions);
 
     res
