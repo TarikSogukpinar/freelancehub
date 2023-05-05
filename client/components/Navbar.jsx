@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useState } from "react";
-import Cookies from "js-cookie";
 
-export default function Navbar() {
+export default function Navbar({tkn}) {
+  console.log(tkn);
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -102,4 +102,3 @@ export default function Navbar() {
     </>
   );
 }
-

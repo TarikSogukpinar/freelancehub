@@ -1,12 +1,17 @@
 import Head from "next/head";
 import Navbar from "./Navbar";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Footer from "./Footer";
 import Image from "next/image";
 import Link from "next/link";
 import Stars from "./Stars";
+import Context from "../context/context";
 
 export default function HomePage() {
+  const tkn = useContext(Context);
+  console.log(tkn);
+  console.log(tkn.split("=")[1]);
+
   const [cards, setCards] = useState([
     {
       id: 1,
@@ -108,7 +113,7 @@ export default function HomePage() {
         </title>
         <meta name="description" content="Freelancer HomePage" />
       </Head>
-      <Navbar />
+      <Navbar tkn={tkn}/>
       <main>
         <section className="m-0 p-0">
           <div className="px-6 py-16 w-full flex flex-col justify-center items-center">
@@ -266,7 +271,9 @@ export default function HomePage() {
                         {blog.icon}
                         {blog.category}
                       </span>
-                      <span className="text-sm text-lime-500">{blog.time} days ago</span>
+                      <span className="text-sm text-lime-500">
+                        {blog.time} days ago
+                      </span>
                     </div>
                     <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                       <Link href="/"> {blog.title}</Link>
