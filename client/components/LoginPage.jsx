@@ -9,6 +9,7 @@ import Cookies from "js-cookie";
 
 export default function LoginPage() {
  
+  
   const router = useRouter();
 
   const [loginValues, setLoginValues] = useState({
@@ -35,7 +36,7 @@ export default function LoginPage() {
           if (!res.error) {
             notifySuccess("Login Successfull");
             setTimeout(() => {
-              router.push("/");
+              router.push("/dashboard");
             }, 3500);
             Cookies.set('token', JSON.stringify(token));
           }
