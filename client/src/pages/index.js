@@ -14,3 +14,11 @@ export default function Home() {
     </>
   );
 }
+
+export async function getServerSideProps(context) {
+  const cookies = context.req.headers.cookie;
+  console.log(cookies);
+  return {
+    props: {},
+  };
+}

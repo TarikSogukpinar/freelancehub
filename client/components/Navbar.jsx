@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
+
   return (
     <>
       <nav className="bg-white dark:bg-indigo-900 w-full border-b hidden border-gray-200 dark:border-gray-600 md:block">
@@ -100,3 +102,4 @@ export default function Navbar() {
     </>
   );
 }
+

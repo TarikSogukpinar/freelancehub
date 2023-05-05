@@ -8,10 +8,7 @@ import { loginUser } from "@/services/authService";
 import Cookies from "js-cookie";
 
 export default function LoginPage() {
-  // useEffect(() => {
-  //   console.log(Cookies.get("token"))
-  // });
-
+ 
   const router = useRouter();
 
   const [loginValues, setLoginValues] = useState({
@@ -40,7 +37,7 @@ export default function LoginPage() {
             setTimeout(() => {
               router.push("/");
             }, 3500);
-            console.log("tokeeeeen", Cookies.get("token"));
+            Cookies.set('token', JSON.stringify(token));
           }
         })
         .catch((error) => {
