@@ -1,7 +1,23 @@
 import "@/styles/globals.css";
-import { Lobster } from "next/font/google";
+import Context from "../../context/context";
 // If loading a variable font, you don't need to specify the font weight
-const lobster = Lobster({ subsets: ["latin"], weight: "400" });
+
 export default function App({ Component, pageProps }) {
-  return <Component classname={lobster.className} {...pageProps} />;
+  return (
+    <Context.Provider value={pageProps.cookies}>
+      <Component {...pageProps} />
+    </Context.Provider>
+  );
+}
+
+export async function getServerSideProps(context) {
+  const cookieData = context.req.headers.cookie;
+
+  // const cookieData = getCookieData(context.req.cookies);
+
+  return {
+    props: {
+      cookieData,
+    },
+  };
 }

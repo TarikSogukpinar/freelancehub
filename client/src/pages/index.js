@@ -2,6 +2,7 @@ import Head from "next/head";
 import HomePage from "../../components/HomePage";
 
 export default function Home() {
+  // console.log(cookies);
   return (
     <>
       <Head>
@@ -17,8 +18,8 @@ export default function Home() {
 
 export async function getServerSideProps(context) {
   const cookies = context.req.headers.cookie;
-  console.log(cookies);
+  // console.log(cookies);
   return {
-    props: {},
+    props: { cookies },
   };
 }
