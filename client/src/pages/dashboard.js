@@ -9,7 +9,7 @@ export default function Dashboard({ cookies }) {
     if (!token) {
       router.push("/login");
     }
-  }, [tkn]);
+  }, [token]);
   return (
     <>
       <Navbar />
