@@ -7,11 +7,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { loginUser } from "@/services/authService";
 import Cookies from "js-cookie";
 
-export default function LoginPage() {
- 
-  
+export default function LoginPage({ cookies }) {
   const router = useRouter();
-
   const [loginValues, setLoginValues] = useState({
     email: "",
     password: "",
@@ -38,7 +35,7 @@ export default function LoginPage() {
             setTimeout(() => {
               router.push("/dashboard");
             }, 3500);
-            Cookies.set('token', JSON.stringify(token));
+            Cookies.set("token", JSON.stringify(token));
           }
         })
         .catch((error) => {
@@ -52,7 +49,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col justify-between items-center h-screen">
-      <Navbar />
+      <Navbar cookies={cookies} />
       <div className="w-full flex justify-center items-center max-w-sm p-4 my-20 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-indigo-900 dark:border-gray-700">
         <Toaster position="bottom-center" reverseOrder={false} />
         <form onSubmit={handleSubmit} className="space-y-6 w-3/4" action="#">
