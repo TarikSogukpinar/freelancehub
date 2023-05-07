@@ -2,6 +2,8 @@ import User from "../../models/User.js";
 import bcrypt from "bcryptjs";
 import registerValidationSchema from "../../validations/authValidation/registerValidationSchema.js";
 import Profile from "../../models/Profile.js";
+import jwt from "jsonwebtoken";
+import sendEmail from "../../helpers/sendEmail/sendEmail.js";
 
 const registerUser = async (req, res) => {
   const { email, password, confirmPassword } = req.body;
@@ -65,6 +67,16 @@ const registerUser = async (req, res) => {
     });
 
     await profileInformation.save();
+
+    //Verify Email
+
+    const secret = process.env.ACCESS_TOKEN_PRIVATE_KEY + data.password;
+    const token = jwt.sign({ email: data.email, id: data._id }, secret, {
+      expiresIn: "1h",
+    });
+
+    const sendVerifyEmail = `${process.env.VERIFY_EMAIL_URL}/${data._id}/${token}/`;
+    await sendEmail(data.email, "Verify Email", sendVerifyEmail);
 
     res.status(201).json({
       error: false,

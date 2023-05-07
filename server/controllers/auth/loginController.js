@@ -32,26 +32,25 @@ const loginUser = async (req, res) => {
         .json({ error: true, message: "Email or password is wrong" });
     }
 
-    //next feature
-    // const checkUserEmailIsVerify = await user.checkEmail;
+    const checkUserEmailIsVerify = await user.checkEmail;
+    console.log("check email", checkUserEmailIsVerify);
 
-    // if (!checkUserEmailIsVerify) {
-    //   return res.status(400).json({
-    //     error: true,
-    //     message: "Email is not a valid email please confirm your email!",
-    //   });
-    // }
+    if (!checkUserEmailIsVerify) {
+      return res.status(400).json({
+        error: true,
+        message: "Email is not a valid email please confirm your email!",
+      });
+    }
 
     const token = await generateToken(user);
 
     const cookieOptions = {
       httpOnly: true,
-      secure: true,
-      sameSite: "Lax", //cross-site cookie
+      secure: false,
+      sameSite: "None", //cross-site cookie
       maxAge: 60 * 60 * 24 * 1000,
     };
 
- 
     res.cookie("token", token, cookieOptions);
 
     res

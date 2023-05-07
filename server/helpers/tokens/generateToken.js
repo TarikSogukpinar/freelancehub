@@ -8,8 +8,8 @@ export const generateToken = (user) => {
       process.env.ACCESS_TOKEN_PRIVATE_KEY,
       { expiresIn: "3d" }
     );
-    return Promise.resolve(accessToken);
+    return accessToken;
   } catch (error) {
-    return Promise.reject(error);
+    console.log(error);
   }
 };

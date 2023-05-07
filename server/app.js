@@ -12,7 +12,7 @@ import cors from "cors";
 import connectionDatabase from "./helpers/connectionDatabase/connectionDatabase.js";
 import { initRoutes } from "./routes/index.routes.js";
 import initLimit from "./helpers/limiter/rateLimiter.js";
-import corsOption from "./helpers/cors/corsOption.js"; 
+import corsOption from "./helpers/cors/corsOption.js";
 
 dotenv.config({
   path: "./.env.local",
