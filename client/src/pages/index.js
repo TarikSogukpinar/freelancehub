@@ -1,7 +1,5 @@
 import Head from "next/head";
 import HomePage from "../../components/HomePage";
-import { useContext } from "react";
-import Context from "../../context/context";
 
 export default function Home({ cookies }) {
   console.log(cookies);
