@@ -6,11 +6,14 @@ import ProfileButton from "../ProfileButton";
 export default function Navbar() {
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const [isOpen, setIsOpen] = useState({
+    isTrue: false,
+    cat: null,
+  });
   const [onSubCate, setOnSubCat] = useState(false);
   const [selectedCat, setSelectedCat] = useState(null);
 
   const categoryOnHandler = (cat) => {
-    console.log(cat);
     setOnSubCat(true);
     setSelectedCat(cat);
   };
@@ -21,10 +24,9 @@ export default function Navbar() {
   const showMobilMenu = () => {
     setShowMenu(!showMenu);
   };
-
   return (
-    <div className="fixed top-0 w-full">
-      <nav className="bg-white w-full flex  relative justify-between items-center px-4 h-30 sm:h-20 container mx-auto">
+    <div className="w-full">
+      <nav className="bg-white w-full flex  relative justify-between items-center px-4 h-30 sm:h-20  mx-auto">
         <div className="hidden md:inline-flex">
           <Link href="/">
             <div className=" text-xl text-indigo-900 font-extrabold">
@@ -117,8 +119,55 @@ export default function Navbar() {
 
         <ProfileButton />
       </nav>
+      <nav
+        className="bg-gray-50 dark:bg-indigo-900 shadow-lg flex justify-center items-center p-4"
+        onMouseLeave={() => setIsOpen({ ...isOpen, isTrue: false, cat: null })}
+      >
+        {categories.map((cat, index) => {
+          return (
+            <div
+              key={cat.catId}
+              className="relative mr-4 text-white hover:border-b-2 hover: border-b-2 border-indigo-900 hover:border-b-white"
+            >
+              <button
+                className="z-20 "
+                onMouseOver={() =>
+                  setIsOpen({ ...isOpen, isTrue: true, cat: index })
+                }
+              >
+                {cat.categoryName}
+              </button>
+              {isOpen.isTrue && isOpen.cat !== null ? (
+                <div
+                  className={
+                    isOpen.cat !== index
+                      ? "hidden"
+                      : index < 3
+                      ? "absolute left-0 w-72 z-20 p-4 mt-2 bg-indigo-900 shadow-xl basis-1"
+                      : "absolute right-0 w-72 z-20 p-4 mt-2 bg-indigo-900 shadow-xl basis-1"
+                  }
+                >
+                  {categories[isOpen.cat]?.subCategories.map((sub) => {
+                    return (
+                      <Link
+                        href={sub.url}
+                        key={sub.subId}
+                        className="flex justify-start items-start"
+                      >
+                        {sub.name}
+                      </Link>
+                    );
+                  })}
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          );
+        })}
+      </nav>
 
-      <nav className="bg-gray-50 dark:bg-indigo-900 shadow-lg">
+      {/* <nav className="bg-gray-50 dark:bg-indigo-900 shadow-lg">
         <div className="max-w-screen-xl flex justify-end md:justify-between md:px-4 md:py-3 mx-auto">
           <div
             className={
@@ -127,7 +176,7 @@ export default function Navbar() {
                 : "flex items-center justify-end w-full"
             }
           >
-            <ul className="md:flex hidden flex-row font-medium mt-0 mr-6 md:space-x-8 text-sm">
+            <ul className="md:flex hidden flex-row font-medium mt-0 mr-6 md:space-x-8 text-sm ">
               {categories.map((cat, index) => {
                 return (
                   <div key={index}>
@@ -211,7 +260,7 @@ export default function Navbar() {
           {selectedCat?.subCategories.map((sub) => {
             return (
               <Link
-                className="text-white hover:bg-lime-600 hover:underline hover:text-white p-2"
+                className="text-white hover:bg-lime-600 hover:underline hover:text-white p-2 "
                 href={sub.url}
                 key={sub.subId}
               >
@@ -220,7 +269,7 @@ export default function Navbar() {
             );
           })}
         </div>
-      </nav>
+      </nav> */}
     </div>
   );
 }

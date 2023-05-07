@@ -1,24 +1,23 @@
 import Link from "next/link";
 import { useState } from "react";
-
-export default function ProfileButton() {
+import { BsXDiamondFill } from "react-icons/bs";
+import { BiExit, BiGroup } from "react-icons/bi";
+import { useRouter } from "next/router";
+export default function ProfileButton({ bgColor }) {
   const [showProfile, setShowProfile] = useState(false);
-  const removeCookie = () => {
-    // cookie silen fonksiyon yazılacak
-    // cookie kontrol edilip yoksa loginpage e yönlendirilecek
-  };
+  const removeCookie = () => {};
   return (
-    <div className="flex-initial relative">
-      <div className="flex justify-end items-center relative z-50">
+    <div className={`flex relative justify-center items-center p-2`}>
+      <div className={` flex justify-end items-center relative z-50`}>
         <div className="block">
           <div className="inline relative">
             <button
               type="button"
-              className="inline-flex items-center relative px-2 border rounded-full hover:shadow-lg"
+              className={`bg-${bgColor} inline-flex items-center relative px-2 border rounded-full hover:shadow-lg`}
               onClick={() => setShowProfile(!showProfile)}
             >
               <div className="pl-1">
-                <svg
+                {/* <svg
                   viewBox="0 0 32 32"
                   xmlns="http://www.w3.org/2000/svg"
                   aria-hidden="true"
@@ -39,8 +38,9 @@ export default function ProfileButton() {
                     <path d="m2 24h28" />
                     <path d="m2 8h28" />
                   </g>
-                </svg>
+                </svg> */}
               </div>
+              <div className="font-bold text-indigo-900">username</div>
               <div className="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5">
                 <svg
                   viewBox="0 0 32 32"
@@ -64,19 +64,31 @@ export default function ProfileButton() {
       </div>
       <div
         className={
-          showProfile ? "absolute bg-white p-10 border top-0" : "hidden"
+          showProfile ? "absolute bg-white p-4 border top-0" : "hidden"
         }
+        style={{ top: 60 }}
       >
-        <div className="flex flex-col">
-          <Link href={"/"}>Profil</Link>
-          <Link href={"/"}>Ayarlar</Link>
+        <div className="flex flex-col justify-center items-start w-full">
+          <Link
+            href={"/dashboard"}
+            className="flex justify-start items-center pr-10 text-gray-500 hover:text-indigo-900 font-bold"
+          >
+            <BiGroup className="mr-4 my-2" />
+            Profil
+          </Link>
+          <Link
+            href={"/"}
+            className="flex justify-start items-center pr-10 text-gray-500 hover:text-indigo-900 font-bold"
+          >
+            <BsXDiamondFill className="mr-4 my-2" /> Ayarlar
+          </Link>
           <button
             type="button"
             onClick={() => removeCookie()}
-            className="m-0 p-0 text-left"
+            className="m-0 p-0 flex justify-start items-center pr-10 text-gray-500 hover:text-indigo-900 font-bold "
             href={"/"}
           >
-            Çıkış
+            <BiExit className="mr-4 my-2" /> Çıkış
           </button>
         </div>
       </div>
