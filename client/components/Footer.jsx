@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="mb-6 md:mb-0">
             <Link href="/" className="flex items-center">
               <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-                Freelancer
+                FreelancerHub
               </span>
             </Link>
           </div>
@@ -89,7 +89,7 @@ export default function Footer() {
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2023{" "}
             <Link href="/" className="hover:underline">
-              Freelancer™
+              FreelancerHub™
             </Link>
             . All Rights Reserved.
           </span>
