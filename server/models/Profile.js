@@ -9,9 +9,14 @@ const profileSchema = new mongoose.Schema(
       required: true,
     },
     profilePicture: { type: String },
+    title: { type: String },
     bio: { type: String },
     location: { type: String },
-    skills: { type: String },
+    skills: [
+      {
+        name: String,
+      },
+    ],
     phoneNumber: { type: String },
     portfolio: [
       {
@@ -47,15 +52,31 @@ const profileSchema = new mongoose.Schema(
     ],
     certifications: [
       {
-        name: {
+        certificationsName: {
           type: String,
           required: false,
         },
-        date: {
+        certificationsTopic: {
           type: Date,
           required: false,
         },
-        issuer: {
+        certificationsDate: {
+          type: String,
+          required: false,
+        },
+      },
+    ],
+    education: [
+      {
+        schoolName: {
+          type: String,
+          required: false,
+        },
+        major: {
+          type: Date,
+          required: false,
+        },
+        graduatedDate: {
           type: String,
           required: false,
         },
