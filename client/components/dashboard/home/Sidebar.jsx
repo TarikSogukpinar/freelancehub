@@ -8,7 +8,7 @@ import {
   BsEye,
   BsPersonCheck,
 } from "react-icons/bs";
-import { AiFillEdit } from "react-icons/ai";
+import { AiFillEdit, AiFillFlag } from "react-icons/ai";
 import { FcCallback, FcSettings } from "react-icons/fc";
 
 import Link from "next/link";
@@ -32,7 +32,9 @@ export default function Sidebar() {
       <div className="profile mt-10 flex justify-center items-center relative bg-white p-4 col-span-3 col-start-2 px-10 py-15 w-full shadow">
         <div className="edit absolute top-5 right-5 flex justify-evenly items-center cursor-pointer hover:underline text-indigo-900">
           <AiFillEdit className="text-xl" />{" "}
-          <span className=" font-bold">Düzenle</span>
+          <Link href={"/settings#general-settings"} className=" font-bold">
+            Düzenle
+          </Link>
         </div>
 
         <div className="flex flex-col justify-center items-center pt-12 w-full ">
@@ -64,7 +66,9 @@ export default function Sidebar() {
                 Freelancer Telefon Hattı
               </span>
             </div>
-            <FcSettings className="text-3xl cursor-pointer" />
+            <Link href={"/settings#contact"}>
+              <FcSettings className="text-3xl cursor-pointer" />
+            </Link>
           </div>
           <div className="py-5 mt-5 border-t-2 border-b-2 border-separate text-lg">
             <span className="text-lime-500 font-bold">FreelancerHub</span>{" "}
@@ -103,7 +107,9 @@ export default function Sidebar() {
           <h2 className="text-xl font-bold">Hakkında</h2>{" "}
           <span className="flex justify-center items-center cursor-pointer hover:underline text-indigo-900">
             <AiFillEdit className="text-xl" />{" "}
-            <span className=" font-bold">Düzenle</span>
+            <Link href={"/settings#general-settings"} className=" font-bold">
+              Düzenle
+            </Link>
           </span>
         </div>
         <div className="mb-10 font-semibold text-gray-500 text-lg">
@@ -154,7 +160,7 @@ export default function Sidebar() {
           </div>
           <div className="add-skils mt-5">
             <Link
-              href="/"
+              href="/settings#experience"
               className="py-1 px-4 border-lime-600 text-lime-600 border-2 m-1 rounded-md hover:border-indigo-900 hover:bg-indigo-900 hover:text-lime-400"
             >
               Ekle +
@@ -163,10 +169,14 @@ export default function Sidebar() {
         </div>
         <div className="mb-10 flex flex-col font-semibold text-gray-500 text-lg">
           <div className="flex justify-between w-full mb-10">
-            <h2 className="text-xl font-bold text-black">Eğitim ve Sertifika Bilgileri</h2>{" "}
+            <h2 className="text-xl font-bold text-black">
+              Eğitim ve Sertifika Bilgileri
+            </h2>{" "}
             <span className="flex justify-center items-center cursor-pointer hover:underline text-indigo-900">
               <AiFillEdit className="text-xl" />{" "}
-              <span className=" font-bold">Düzenle</span>
+              <Link href={"/settings#education"} className=" font-bold">
+                Düzenle
+              </Link>
             </span>
           </div>
           <p>
@@ -176,7 +186,9 @@ export default function Sidebar() {
           </p>
         </div>
       </div>
-      <div className="w-full flex justify-center items-center text-lg text-gray-500 font-semibold hover:underline cursor-pointer pt-5">Hesabı Sil</div>
+      <div className="w-full flex justify-center items-center text-lg text-gray-500 font-semibold hover:underline cursor-pointer pt-5">
+        <AiFillFlag /> Hata Bildir
+      </div>
     </div>
   );
 }
