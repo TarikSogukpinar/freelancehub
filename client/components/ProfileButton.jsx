@@ -3,11 +3,19 @@ import { useState } from "react";
 import { BsXDiamondFill } from "react-icons/bs";
 import { BiExit, BiGroup } from "react-icons/bi";
 import { useRouter } from "next/router";
+import { logoutUser } from "@/services/authService";
 export default function ProfileButton({ bgColor }) {
+  const router = useRouter();
   const [showProfile, setShowProfile] = useState(false);
-  const removeCookie = () => {};
+  const removeCookie = async () => {
+    const data = await logoutUser();
+    console.log(data);
+    if (data.status === 200) {
+      router.push("/login");
+    }
+  };
   return (
-    <div className={`flex relative justify-center items-center p-2`}>
+    <div className={`flex relative justify-center items-center p-2 z-50`}>
       <div className={` flex justify-end items-center relative z-50`}>
         <div className="block">
           <div className="inline relative">
@@ -77,7 +85,7 @@ export default function ProfileButton({ bgColor }) {
             Profil
           </Link>
           <Link
-            href={"/"}
+            href={"/settings"}
             className="flex justify-start items-center pr-10 text-gray-500 hover:text-indigo-900 font-bold"
           >
             <BsXDiamondFill className="mr-4 my-2" /> Ayarlar
