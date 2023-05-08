@@ -32,7 +32,6 @@ app.use(cors(corsOption));
 
 initRoutes(app);
 initLimit(app);
-
 connectionDatabase();
 
 export const PORT = process.env.PORT || 5000;
