@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import Navbar from "../../components/dashboard/Navbar";
 import { useRouter } from "next/router";
 
-import Sidebar from "../../components/dashboard/Sidebar";
-import MainSection from "../../components/dashboard/MainSection";
+import Sidebar from "../../components/dashboard/home/Sidebar";
+import MainSection from "../../components/dashboard/home/MainSection";
 import Footer from "../../components/Footer";
 import Head from "next/head";
 
