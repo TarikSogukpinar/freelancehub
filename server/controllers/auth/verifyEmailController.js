@@ -11,7 +11,6 @@ const verifyEmail = async (req, res) => {
 
     await User.updateOne({ _id: user._id, checkEmail: true });
     res.status(201).json({ message: "Email verified successfully" });
-    
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: true, message: error.message });

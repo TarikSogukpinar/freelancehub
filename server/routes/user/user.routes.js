@@ -33,4 +33,6 @@ router.delete(
   userController.deleteUserById
 );
 
+router.get("/getUser", verifyToken, userController.getUser);
+
 export default router;

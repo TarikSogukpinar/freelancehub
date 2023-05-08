@@ -35,6 +35,19 @@ const getUserById = async (req, res) => {
   }
 };
 
+const getUser = async (req, res) => {
+  try {
+    // const { firstName, lastName, email } = req.body;
+
+    const user = await User.find({ _id: req.user.id });
+
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: true, message: error.message });
+  }
+};
+
 const updateUserById = async (req, res) => {
   try {
     const { firstName, lastName, email } = req.body;
@@ -122,4 +135,5 @@ export default {
   updateUserById,
   passwordReset,
   deleteUserById,
+  getUser,
 };

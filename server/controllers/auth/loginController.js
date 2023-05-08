@@ -46,7 +46,7 @@ const loginUser = async (req, res) => {
 
     const cookieOptions = {
       httpOnly: true,
-      secure: false,
+      secure: true,
       sameSite: "None", //cross-site cookie
       maxAge: 60 * 60 * 24 * 1000,
     };
