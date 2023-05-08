@@ -1,11 +1,12 @@
 {
-  "name": "server",
+  "name": "freelancer-hub",
   "version": "1.0.0",
-  "description": "",
+  "description": "This application is an open source application where freelancers can share ads",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev:development": "cross-env NODE_ENV=development nodemon index.js",
+    "dev:production": "cross-env NODE_ENV=production nodemon index.js",
     "test": "jest"
   },
   "keywords": [],

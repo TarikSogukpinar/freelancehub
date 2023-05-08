@@ -2,6 +2,7 @@ import User from "../../models/User.js";
 import bcrypt from "bcryptjs";
 import loginValidation from "../../validations/authValidation/loginValidationSchema.js";
 import { generateToken } from "../../helpers/tokens/generateToken.js";
+import { cookieOptions } from "../../helpers/tokens/cookieOptions.js";
 
 const loginUser = async (req, res) => {
   try {
@@ -43,13 +44,6 @@ const loginUser = async (req, res) => {
     }
 
     const token = await generateToken(user);
-
-    const cookieOptions = {
-      httpOnly: true,
-      secure: true,
-      sameSite: "None", //cross-site cookie
-      maxAge: 60 * 60 * 24 * 1000,
-    };
 
     res.cookie("token", token, cookieOptions);
 

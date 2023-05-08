@@ -3,7 +3,7 @@ import loginController from "../../controllers/auth/loginController.js";
 import registerController from "../../controllers/auth/registerController.js";
 import logoutController from "../../controllers/auth/logoutController.js";
 import verifyEmailController from "../../controllers/auth/verifyEmailController.js";
-import { verifyToken } from "../../middleware/tokens/verify.js";
+import { verifyToken } from "../../middleware/verifyTokens/verifyTokens.js";
 
 const router = Router();
 

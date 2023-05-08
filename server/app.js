@@ -14,8 +14,9 @@ import { initRoutes } from "./routes/index.routes.js";
 import initLimit from "./helpers/limiter/rateLimiter.js";
 import corsOption from "./helpers/cors/corsOption.js";
 
+const envFile = process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development';
 dotenv.config({
-  path: "./.env.local",
+  path: envFile,
 });
 
 const app = express();
