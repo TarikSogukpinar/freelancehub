@@ -39,8 +39,13 @@ const getUser = async (req, res) => {
   try {
     // const { firstName, lastName, email } = req.body;
 
-    const user = await User.find({ _id: req.user.id });
+    const user = await User.find(req.user.id);
 
+    if (user === null) {
+      return res.status(404).json({ error: true, message: "User not found" });
+    }
+
+    // console.log(user[0].firstName);
     res.json(user);
   } catch (error) {
     console.log(error);

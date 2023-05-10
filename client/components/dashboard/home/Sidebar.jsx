@@ -10,10 +10,24 @@ import {
 } from "react-icons/bs";
 import { AiFillEdit, AiFillFlag } from "react-icons/ai";
 import { FcCallback, FcSettings } from "react-icons/fc";
-
+import axios from "axios";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-export default function Sidebar() {
+export default function Sidebar({ userData }) {
+  const [userInfo, setUserInfo] = useState([]);
+  // const getUserInfo = async () => {
+  //   const res = await axios.get("http://localhost:5000/api/user/getUser", {
+  //     withCredentials: true,
+  //   });
+
+  //   setUserInfo(res.data);
+  //   console.log(res.data);
+  // };
+  // useEffect(() => {
+  //   console.log("use effects runs on client");
+  //   getUserInfo();
+  // });
   return (
     <div className="sidebar flex flex-col ml-20 self-start w-2/5">
       <div className="social flex flex-col justify-start items-start bg-white p-4 col-span-3 col-start-2 shadow">
@@ -49,7 +63,12 @@ export default function Sidebar() {
             />
             <div className="w-6 h-6 bg-green-500 rounded-full absolute top-3 right-3 border-2 border-white"></div>
           </div>
-          <p className="font-bold text-md">username</p>
+          {userData ? (
+            <p className="font-bold text-md">{userData}</p>
+          ) : (
+            <p className="font-bold text-md">{userData}</p>
+          )}
+
           <p className="font-tiny text-md italic text-gray-500">
             Jr. Full Stack Developer
           </p>

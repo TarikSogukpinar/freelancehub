@@ -29,6 +29,7 @@ export const loginUser = async (email, password) => {
       password,
     },
     {
+      credentials: "include",
       withCredentials: true,
      
     }
