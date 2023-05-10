@@ -1,30 +1,31 @@
 import request from "supertest";
+import mongoose from "mongoose";
 import app from "../../app.js";
-import { dbConnect, dbDisconnect } from "./utils/dbHandler.utils.js";
+import dotenv from "dotenv";
 
-// const envFile =
-//   process.env.NODE_ENV === "production"
-//     ? ".env.production"
-//     : ".env.development";
-// dotenv.config({
-//   path: envFile,
-// });
-// const mongod = await MongoMemoryServer.create();
-// /* Connecting to the database before each test. */
-// beforeEach(async () => {
+const envFile =
+  process.env.NODE_ENV === "production"
+    ? ".env.production"
+    : ".env.development";
+dotenv.config({
+  path: envFile,
+});
 
-//   const uri = mongod.getUri();
-//   await mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
-//     useUnifiedTopology: true,
-//     useNewUrlParser: true,
-//   });
-// });
+/* Connecting to the database before each test. */
+beforeEach(async () => {
+  await mongoose.connect(process.env.MONGO_CONNECTION_STRING, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+  });
+});
 
-beforeAll(async () => dbConnect());
-afterAll(async () => dbDisconnect());
+/* Closing database connection after each test. */
+afterEach(async () => {
+  await mongoose.connection.close();
+});
 
 describe("Register", () => {
-  it("should create a new user and return 201 status", async () => {
+  it("should create a new user and return 200 status", async () => {
     const res = await request(app).post("/api/auth/register").send({
       firstName: "testuser",
       lastName: "testuserLastName",
@@ -33,13 +34,17 @@ describe("Register", () => {
       confirmPassword: "testWarp123password",
     });
 
-    expect(res.statusCode).toEqual(201);
+    expect(res.statusCode).toEqual(200);
   });
 });
 
+describe("Login", () => {
+  it("should login user and return 200 status", async () => {
+    const res = await request(app).post("/api/auth/login").send({
+      email: "hanlueee@gmail.com",
+      password: "Warp123",
+    });
 
-// /* Closing database connection after each test. */
-// afterEach(async () => {
-//   await mongoose.connection.close();
-//   await mongod.stop();
-// });
+    expect(res.statusCode).toEqual(200);
+  });
+});

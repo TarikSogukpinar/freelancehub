@@ -30,7 +30,7 @@ app.use(compression());
 app.use(mongoSanitize());
 app.use(xss());
 app.use(cors(corsOption));
-app.use(expressStatusMonitor());
+// app.use(expressStatusMonitor());
 
 initRoutes(app);
 initLimit(app);

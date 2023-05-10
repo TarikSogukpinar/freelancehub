@@ -78,7 +78,7 @@ const registerUser = async (req, res) => {
     const sendVerifyEmail = `${process.env.VERIFY_EMAIL_URL}/${data._id}/${token}/`;
     await sendEmail(data.email, "Verify Email", sendVerifyEmail);
 
-    res.status(201).json({
+    res.status(200).json({
       error: false,
       data: data,
       message: "Account Created Succesfully!",
