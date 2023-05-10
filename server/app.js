@@ -7,6 +7,7 @@ import compression from "compression";
 import mongoSanitize from "express-mongo-sanitize";
 import xss from "xss-clean";
 import cors from "cors";
+import expressStatusMonitor from "express-status-monitor";
 
 //Custom Modules, Packages, Configs, Etc
 import connectionDatabase from "./helpers/connectionDatabase/connectionDatabase.js";
@@ -29,6 +30,7 @@ app.use(compression());
 app.use(mongoSanitize());
 app.use(xss());
 app.use(cors(corsOption));
+app.use(expressStatusMonitor());
 
 initRoutes(app);
 initLimit(app);
