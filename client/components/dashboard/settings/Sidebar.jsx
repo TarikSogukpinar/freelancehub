@@ -1,6 +1,7 @@
 import { CiSettings, CiBank, CiLock, CiBellOn } from "react-icons/ci";
 
 export default function Sidebar({ mainSections, setMainSections }) {
+
   return (
     <div className="h-screen flex justify-end pt-10">
       <div className="w-8/12">

@@ -5,7 +5,7 @@ import MainSection from "../../components/dashboard/settings/MainSection";
 import Footer from "../../components/Footer";
 import { useState } from "react";
 
-export default function Settings() {
+export default function Settings({userData}) {
   const [mainSections, setMainSections] = useState("GeneralSettings");
   return (
     <div>
@@ -25,6 +25,7 @@ export default function Settings() {
         </div>
         <div className="hero w-9/12 bg-gray-100 p-10">
           <MainSection
+            userData={userData}
             setMainSections={setMainSections}
             mainSections={mainSections}
           />
@@ -33,4 +34,40 @@ export default function Settings() {
       <Footer />
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  let userData = null;
+
+  const token = context.req.cookies.token;
+
+  if (token) {
+    try {
+      const res = await fetch(
+        "http://localhost:5000/api/user/getUser",
+        {
+          method: "GET",
+          headers: {
+            Cookie: `token=${token}`,
+          },
+        },
+        { withCredentials: true, credentials: "include" }
+      );
+
+      const data = await res.json();
+
+      userData = data;
+    } catch (error) {
+      console.log(error.message);
+      if (error.response) {
+        console.log(error.response.data.message);
+      }
+    }
+  }
+
+  return {
+    props: {
+      userData,
+    },
+  };
 }

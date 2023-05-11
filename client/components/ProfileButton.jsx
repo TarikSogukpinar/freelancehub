@@ -4,9 +4,11 @@ import { BsXDiamondFill } from "react-icons/bs";
 import { BiExit, BiGroup } from "react-icons/bi";
 import { useRouter } from "next/router";
 import { logoutUser } from "@/services/authService";
-export default function ProfileButton({ bgColor }) {
+export default function ProfileButton({ bgColor, userData }) {
+  console.log("data buraya doğru gelmiyor userData button", userData);
   const router = useRouter();
   const [showProfile, setShowProfile] = useState(false);
+
   const removeCookie = async () => {
     const data = await logoutUser();
     console.log(data);
@@ -14,6 +16,7 @@ export default function ProfileButton({ bgColor }) {
       router.push("/login");
     }
   };
+
   return (
     <div className={`flex relative justify-center items-center p-2 z-50`}>
       <div className={` flex justify-end items-center relative z-50`}>
@@ -48,7 +51,7 @@ export default function ProfileButton({ bgColor }) {
                   </g>
                 </svg> */}
               </div>
-              <div className="font-bold text-indigo-900">username</div>
+              <div className="font-bold text-indigo-900">usernameee</div>
               <div className="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5">
                 <svg
                   viewBox="0 0 32 32"

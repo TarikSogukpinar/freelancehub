@@ -4,11 +4,12 @@ import { AiFillEdit, AiOutlinePlus } from "react-icons/ai";
 import { ImExit } from "react-icons/im";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-export default function GeneralSettings() {
+
+export default function GeneralSettings({ userData }) {
   const [profileInfo, setProfileInfo] = useState({
-    firstName: "Halit",
-    lastName: "Uzan",
-    username: "halituzan",
+    firstName: userData.user[0].firstName,
+    lastName: userData.user[0].lastName,
+    username: userData.user[0].firstName, //gereksiz silinecek
     image: "/images/profile.jpg",
     job: "Yazılımcı",
     title: "Jr. Full Stack Developer",
@@ -52,7 +53,7 @@ export default function GeneralSettings() {
                 <AiOutlinePlus />
               </div>
               <div className="username ml-2 self-start text-xl font-bold text-indigo-900">
-                {profileInfo.username}{" "}
+               {" "}
                 <span className="text-lime-600 cursor-pointer text-sm">
                   [Değiştir]
                 </span>
@@ -66,7 +67,7 @@ export default function GeneralSettings() {
                   id="firstName"
                   className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold"
                   placeholder="Ad"
-                  value={profileInfo.firstName}
+                  value={userData.user[0].email}
                   onChange={(e) => profileHandler(e)}
                   required
                 />
@@ -229,7 +230,7 @@ export default function GeneralSettings() {
               E-posta Adresi
             </div>
             <div className="w-9/12 text-md text-gray-900 font-medium">
-              halit@gmail.com{" "}
+              {userData.user[0].email}
             </div>
           </div>
           <div className="w-full border-y flex justify-between items-center p-5">

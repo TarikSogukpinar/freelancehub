@@ -1,4 +1,5 @@
 import User from "../../models/User.js";
+import Profile from "../../models/Profile.js";
 import passwordResetValidationSchema from "../../validations/userValidation/passwordResetValidationSchema.js";
 import jwt from "jsonwebtoken";
 import sendEmail from "../../helpers/sendEmail/sendEmail.js";
@@ -37,16 +38,24 @@ const getUserById = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    // const { firstName, lastName, email } = req.body;
-
     const user = await User.find(req.user.id);
+    const profile = await Profile.findOne({ user: req.user.id });
 
-    if (user === null) {
+    if (user === null || user === undefined) {
       return res.status(404).json({ error: true, message: "User not found" });
     }
 
-    // console.log(user[0].firstName);
-    res.json(user);
+    if (profile === null || user === undefined) {
+      return res.status(404).json({ error: true, message: "User not found" });
+    }
+
+    const data = {
+      user: user,
+      profile: profile,
+    };
+    console.log(data)
+
+    res.json(data);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: true, message: error.message });

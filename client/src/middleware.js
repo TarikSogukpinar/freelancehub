@@ -7,4 +7,12 @@ export default function middleware(req) {
   if (!verify && url.includes("/dashboard")) {
     return NextResponse.redirect("http://localhost:3000/login");
   }
+
+  if (verify && url.includes("/login")) {
+    return NextResponse.redirect("http://localhost:3000/dashboard");
+  }
+
+  if (verify && url.includes("/register")) {
+    return NextResponse.redirect("http://localhost:3000/dashboard");
+  }
 }

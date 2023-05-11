@@ -1,23 +1,10 @@
-import { useEffect } from "react";
 import Navbar from "../../components/dashboard/Navbar";
-import { useRouter } from "next/router";
-import axios from "axios";
 import Sidebar from "../../components/dashboard/home/Sidebar";
 import MainSection from "../../components/dashboard/home/MainSection";
 import Footer from "../../components/Footer";
 import Head from "next/head";
 
 export default function Dashboard({ userData }) {
-  // const token = cookies;
-  // const router = useRouter();
-  // useEffect(() => {
-  //   if (!token) {
-  //     router.push("/login");
-  //   }
-  // }, [token]);
-  // useEffect(() => {
-  //   document.getElementsByTagName("body")[0].style.backgroundColor = "#e9e9e9";
-  // }, []);
   return (
     <>
       <Head>
@@ -26,10 +13,10 @@ export default function Dashboard({ userData }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
+      <Navbar userData={userData} />
       <div className="flex justify-between items-center my-10">
         <Sidebar userData={userData} />
-        <MainSection />
+        <MainSection userData={userData} />
       </div>
       <Footer />
     </>
@@ -39,7 +26,7 @@ export default function Dashboard({ userData }) {
 export async function getServerSideProps(context) {
   let userData = null;
 
-  const token = context.req.cookies.token; // Kullanıcının token'ını çerezlerden alın
+  const token = context.req.cookies.token;
 
   if (token) {
     try {
@@ -55,14 +42,13 @@ export async function getServerSideProps(context) {
       );
 
       const data = await res.json();
-      console.log("json data", data);
-      console.log(data[0].email);
-      userData = data[0].email;
+
+      userData = data;
     } catch (error) {
       console.log(error.message);
-      // if (error.response) {
-      //   console.log(error.response.data.message);
-      // }
+      if (error.response) {
+        console.log(error.response.data.message);
+      }
     }
   }
 
