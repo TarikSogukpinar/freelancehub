@@ -49,7 +49,7 @@ export default function Sidebar({ userData }) {
             <div className="w-6 h-6 bg-green-500 rounded-full absolute top-3 right-3 border-2 border-white"></div>
           </div>
 
-          <p className="font-bold text-md">{userData.user[0].email}</p>
+          <p className="font-bold text-md">{userData?.user[0]?.email}</p>
 
           <p className="font-tiny text-md italic text-gray-500">
             Jr. Full Stack Developer
