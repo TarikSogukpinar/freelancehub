@@ -1,6 +1,6 @@
 import { AiFillEdit } from "react-icons/ai";
 
-export default function BankAccount() {
+export default function BankAccount({userData}) {
   return (
     <div>
       <div className="flex justify-between w-full mb-10">

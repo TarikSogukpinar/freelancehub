@@ -11,7 +11,7 @@ export default function GeneralSettings({ userData }) {
     lastName: userData?.user[0]?.lastName,
     username: userData?.user[0]?.firstName, //gereksiz silinecek
     phone: "0555555555",
-    email: "email@email.com",
+    email: userData?.user[0]?.email,
     image: "/images/profile.jpg",
     job: "Yazılımcı",
     skills: [

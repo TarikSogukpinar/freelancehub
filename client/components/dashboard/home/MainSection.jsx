@@ -3,7 +3,7 @@ import Link from "next/link";
 
 import { FcSlrBackSide } from "react-icons/fc";
 
-export default function MainSection() {
+export default function MainSection({userData}) {
   return (
     <div className="hero flex self-start flex-col w-full mx-20 ">
       <div className="portfolio bg-white p-4 mb-10 shadow">

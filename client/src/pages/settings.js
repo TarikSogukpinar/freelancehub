@@ -5,7 +5,7 @@ import MainSection from "../../components/dashboard/settings/MainSection";
 import Footer from "../../components/Footer";
 import { useState } from "react";
 
-export default function Settings({userData}) {
+export default function Settings({ userData }) {
   const [mainSections, setMainSections] = useState("GeneralSettings");
   return (
     <div>
@@ -15,12 +15,13 @@ export default function Settings({userData}) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Navbar />
+      <Navbar userData={userData} />
       <div className="flex">
         <div className="sidebar w-3/12 bg-white">
           <Sidebar
             setMainSections={setMainSections}
             mainSections={mainSections}
+            userData={userData}
           />
         </div>
         <div className="hero w-9/12 bg-gray-100 p-10">

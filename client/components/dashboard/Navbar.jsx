@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { categories } from "./fakeDatas";
 import ProfileButton from "../ProfileButton";
 
-export default function Navbar() {
+export default function Navbar({userData}) {
   const [showSearch, setShowSearch] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [isOpen, setIsOpen] = useState({
@@ -117,7 +117,7 @@ export default function Navbar() {
           </div>
         )}
 
-        <ProfileButton />
+        <ProfileButton userData={userData} />
       </nav>
       <nav
         className="bg-gray-50 dark:bg-indigo-900 shadow-lg flex justify-center items-center p-4"

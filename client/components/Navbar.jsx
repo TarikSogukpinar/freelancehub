@@ -3,6 +3,7 @@ import { useState } from "react";
 import ProfileButton from "./ProfileButton";
 
 export default function Navbar({ cookies, userData }) {
+  console.log(userData)
   const [cookieData, setCookieData] = useState(cookies ? cookies : null);
   const [showMenu, setShowMenu] = useState(false);
   return (

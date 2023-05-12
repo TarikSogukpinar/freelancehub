@@ -5,6 +5,7 @@ import Footer from "../../components/Footer";
 import Head from "next/head";
 
 export default function Dashboard({ userData }) {
+  console.log(userData)
   return (
     <>
       <Head>
