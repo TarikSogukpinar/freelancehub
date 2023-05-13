@@ -1,8 +1,8 @@
 import React from "react";
-import GeneralSettings from "./sidebar/GeneralSettings";
-import BankAccount from "./sidebar/BankAccount";
-import Security from "./sidebar/Security";
-import NotificationSettings from "./sidebar/NotificationSettings";
+import GeneralSettings from "./sidebarsections/GeneralSettings";
+import BankAccount from "./sidebarsections/BankAccount";
+import Security from "./sidebarsections/Security";
+import NotificationSettings from "./sidebarsections/NotificationSettings";
 
 export default function MainSection({ mainSections, userData }) {
   return (
