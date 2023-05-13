@@ -88,7 +88,7 @@ export default function ProfileButton({ bgColor, userData }) {
             Profil
           </Link>
           <Link
-            href={"/settings"}
+            href={"/dashboard/settings"}
             className="flex justify-start items-center pr-10 text-gray-500 hover:text-indigo-900 font-bold"
           >
             <BsXDiamondFill className="mr-4 my-2" /> Ayarlar

@@ -1,11 +1,11 @@
-import Navbar from "../../components/dashboard/Navbar";
-import Sidebar from "../../components/dashboard/home/Sidebar";
-import MainSection from "../../components/dashboard/home/MainSection";
-import Footer from "../../components/Footer";
+import Navbar from "../../../components/dashboard/Navbar";
+import Sidebar from "../../../components/dashboard/home/Sidebar";
+import MainSection from "../../../components/dashboard/home/MainSection";
+import Footer from "../../../components/Footer";
 import Head from "next/head";
 
 export default function Dashboard({ userData }) {
-  console.log(userData)
+  console.log(userData);
   return (
     <>
       <Head>
@@ -15,7 +15,7 @@ export default function Dashboard({ userData }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar userData={userData} />
-      <div className="flex justify-between items-center my-10">
+      <div className="flex justify-between items-center py-10 bg-gray-100">
         <Sidebar userData={userData} />
         <MainSection userData={userData} />
       </div>

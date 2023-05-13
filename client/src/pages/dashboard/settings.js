@@ -1,8 +1,8 @@
 import Head from "next/head";
-import Navbar from "../../components/dashboard/Navbar";
-import Sidebar from "../../components/dashboard/settings/Sidebar";
-import MainSection from "../../components/dashboard/settings/MainSection";
-import Footer from "../../components/Footer";
+import Navbar from "../../../components/dashboard/Navbar";
+import Sidebar from "../../../components/dashboard/settings/Sidebar";
+import MainSection from "../../../components/dashboard/settings/MainSection";
+import Footer from "../../../components/Footer";
 import { useState } from "react";
 
 export default function Settings({ userData }) {

@@ -31,7 +31,10 @@ export default function Sidebar({ userData }) {
       <div className="profile mt-10 flex justify-center items-center relative bg-white p-4 col-span-3 col-start-2 px-10 py-15 w-full shadow">
         <div className="edit absolute top-5 right-5 flex justify-evenly items-center cursor-pointer hover:underline text-indigo-900">
           <AiFillEdit className="text-xl" />{" "}
-          <Link href={"/settings#general-settings"} className=" font-bold">
+          <Link
+            href={"/dashboard/settings#general-settings"}
+            className=" font-bold"
+          >
             Düzenle
           </Link>
         </div>
@@ -64,14 +67,14 @@ export default function Sidebar({ userData }) {
             <div className="flex justify-start items-center">
               <FcCallback className="text-3xl" />{" "}
               <span className="text-xl font-bold text-lime-500">
-                Freelancer Telefon Hattı
+                İletişim Bilgileri
               </span>
             </div>
-            <Link href={"/settings#contact"}>
+            <Link href={"/dashboard/settings#contact"}>
               <FcSettings className="text-3xl cursor-pointer" />
             </Link>
           </div>
-          <div className="py-5 mt-5 border-t-2 border-b-2 border-separate text-lg">
+          {/* <div className="py-5 mt-5 border-t-2 border-b-2 border-separate text-lg">
             <span className="text-lime-500 font-bold">FreelancerHub</span>{" "}
             <span className="font-semibold text-gray-500">
               freelancer hattı sayesinde kişisel numaranı paylaşmaksızın cep
@@ -82,8 +85,8 @@ export default function Sidebar({ userData }) {
               {" "}
               Üstelik ilk ay ücretsiz! 😉
             </p>
-          </div>
-          <div className="w-full p-4">
+          </div> */}
+          <div className="w-full p-4 border-t border-seperate mt-5">
             <div className="flex justify-between my-2">
               <div className="w-1/2 flex justify-start items-center font-semibold text-gray-500 cursor-default">
                 <BsEye /> <span className="pl-5">Son Görülme</span>
@@ -108,7 +111,10 @@ export default function Sidebar({ userData }) {
           <h2 className="text-xl font-bold">Hakkında</h2>{" "}
           <span className="flex justify-center items-center cursor-pointer hover:underline text-indigo-900">
             <AiFillEdit className="text-xl" />{" "}
-            <Link href={"/settings#general-settings"} className=" font-bold">
+            <Link
+              href={"/dashboard/settings#general-settings"}
+              className=" font-bold"
+            >
               Düzenle
             </Link>
           </span>
@@ -161,7 +167,7 @@ export default function Sidebar({ userData }) {
           </div>
           <div className="add-skils mt-5">
             <Link
-              href="/settings#experience"
+              href={"/dashboard/settings#experience"}
               className="py-1 px-4 border-lime-600 text-lime-600 border-2 m-1 rounded-md hover:border-indigo-900 hover:bg-indigo-900 hover:text-lime-400"
             >
               Ekle +
@@ -175,7 +181,10 @@ export default function Sidebar({ userData }) {
             </h2>{" "}
             <span className="flex justify-center items-center cursor-pointer hover:underline text-indigo-900">
               <AiFillEdit className="text-xl" />{" "}
-              <Link href={"/settings#education"} className=" font-bold">
+              <Link
+                href={"/dashboard/settings#education"}
+                className=" font-bold"
+              >
                 Düzenle
               </Link>
             </span>
