@@ -4,7 +4,7 @@ export default function Sidebar({ mainSections, setMainSections }) {
 
   return (
     <div className="h-screen flex justify-end pt-10">
-      <div className="w-8/12">
+      <div className="w-full xl:w-8/12">
         <div
           className={
             mainSections === "GeneralSettings"
