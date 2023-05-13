@@ -7,7 +7,8 @@ import Link from "next/link";
 import Stars from "./Stars";
 import Context from "../context/context";
 
-export default function HomePage({ cookies }) {
+export default function HomePage({ cookies,userData }) {
+  console.log(userData)
   const [cards, setCards] = useState([
     {
       id: 1,
@@ -109,7 +110,7 @@ export default function HomePage({ cookies }) {
         </title>
         <meta name="description" content="Freelancer HomePage" />
       </Head>
-      <Navbar cookies={cookies} />
+      <Navbar cookies={cookies} userData={userData} />
       <main>
         <section className="m-0 p-0">
           <div className="px-6 py-16 w-full flex flex-col justify-center items-center">

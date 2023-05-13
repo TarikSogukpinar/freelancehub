@@ -3,9 +3,11 @@ import { useState } from "react";
 import ProfileButton from "./ProfileButton";
 
 export default function Navbar({ cookies, userData }) {
+  console.log(cookies)
   console.log(userData)
   const [cookieData, setCookieData] = useState(cookies ? cookies : null);
   const [showMenu, setShowMenu] = useState(false);
+
   return (
     <>
       <nav className="bg-white dark:bg-indigo-900 w-full border-b hidden border-gray-200 dark:border-gray-600 md:block">
@@ -16,7 +18,7 @@ export default function Navbar({ cookies, userData }) {
             </span>
           </Link>
 
-          {cookieData?.cookies ? (
+          {cookies ? (
             <ProfileButton userData={userData} bgColor={"white"} />
           ) : (
             <div className="flex md:order-2">
@@ -59,7 +61,7 @@ export default function Navbar({ cookies, userData }) {
           )}
         </div>
       </nav>
-      {cookieData?.cookies ? (
+      {cookies ? (
         <div className="flex-initinal mt-2 mr-2 sm:hidden">
           <ProfileButton userData={userData} />
         </div>

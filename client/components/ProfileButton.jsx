@@ -51,7 +51,7 @@ export default function ProfileButton({ bgColor, userData }) {
                   </g>
                 </svg> */}
               </div>
-              <div className="font-bold text-indigo-900">{userData.user[0].firstName+" "+userData.user[0].lastName}</div>
+              <div className="font-bold text-indigo-900">{userData?.user[0]?.firstName+" "+userData?.user[0]?.lastName}</div>
               <div className="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5">
                 <svg
                   viewBox="0 0 32 32"

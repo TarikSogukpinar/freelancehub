@@ -1,8 +1,8 @@
 import Head from "next/head";
 import HomePage from "../../components/HomePage";
 
-export default function Home({ cookies }) {
-  console.log(cookies);
+export default function Home({ cookies,userData }) {
+  console.log(userData);
   return (
     <>
       <Head>
@@ -11,19 +11,60 @@ export default function Home({ cookies }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HomePage cookies={{ cookies }} />
+      <HomePage cookies={cookies.token} userData={userData} />
     </>
   );
 }
 
+// export async function getServerSideProps(context) {
+//   const cookies = context.req.headers.cookie;
+
+//   return {
+//     props: cookies
+//       ? {
+//           cookies,
+//         }
+//       : { cookies: null },
+//   };
+// }
+
 export async function getServerSideProps(context) {
-  const cookies = context.req.headers.cookie;
+  let userData = null;
+
+  const token = context.req.cookies.token;
+
+  if (token) {
+    try {
+      const res = await fetch(
+        "http://localhost:5000/api/user/getUser",
+        {
+          method: "GET",
+          headers: {
+            Cookie: `token=${token}`,
+          },
+        },
+        { withCredentials: true, credentials: "include" }
+      );
+
+      const data = await res.json();
+
+      userData = data;
+    } catch (error) {
+      console.log(error.message);
+      if (error.response) {
+        console.log(error.response.data.message);
+      }
+    }
+  }
 
   return {
-    props: cookies
-      ? {
-          cookies,
-        }
-      : { cookies: null },
+    props: {
+      userData,
+      cookies: token
+        ? {
+            token,
+          }
+        : { token: null },
+    },
   };
 }
