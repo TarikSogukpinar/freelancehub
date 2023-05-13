@@ -1,9 +1,10 @@
-import Navbar from "../../../components/dashboard/Navbar";
-import Sidebar from "../../../components/dashboard/home/Sidebar";
-import MainSection from "../../../components/dashboard/home/MainSection";
-import Footer from "../../../components/Footer";
+import Navbar from "@/components/dashboard/Navbar";
+import Sidebar from "@/components/dashboard/home/Sidebar";
+import MainSection from "@/components/dashboard/home/MainSection";
+import Footer from "@/components/Footer";
 import Head from "next/head";
 
+Footer
 export default function Dashboard({ userData }) {
   console.log(userData);
   return (

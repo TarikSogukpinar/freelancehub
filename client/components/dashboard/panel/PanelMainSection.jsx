@@ -10,7 +10,6 @@ import MyPortfolio from "./sidebarsections/MyPortfolio";
 
 
 export default function PanelMainSection({ mainSections, userData }) {
-  console.log(mainSections)
   return (
     <>
       {mainSections === "MyBalance" ? <MyBalance userData={userData} /> : ""}

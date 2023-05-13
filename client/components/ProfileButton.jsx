@@ -7,11 +7,9 @@ import { logoutUser } from "@/services/authService";
 export default function ProfileButton({ bgColor, userData }) {
   const router = useRouter();
   const [showProfile, setShowProfile] = useState(false);
-  console.log(userData)
 
   const removeCookie = async () => {
     const data = await logoutUser();
-    console.log(data);
     if (data.status === 200) {
       router.push("/login");
     }
@@ -51,7 +49,11 @@ export default function ProfileButton({ bgColor, userData }) {
                   </g>
                 </svg> */}
               </div>
-              <div className="font-bold text-indigo-900">{userData?.user[0]?.firstName+" "+userData?.user[0]?.lastName}</div>
+              <div className="font-bold text-indigo-900">
+                {userData?.user[0]?.firstName +
+                  " " +
+                  userData?.user[0]?.lastName}
+              </div>
               <div className="block flex-grow-0 flex-shrink-0 h-10 w-12 pl-5">
                 <svg
                   viewBox="0 0 32 32"
