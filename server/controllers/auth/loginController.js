@@ -3,6 +3,8 @@ import bcrypt from "bcryptjs";
 import loginValidation from "../../validations/authValidation/loginValidationSchema.js";
 import { generateToken } from "../../helpers/tokens/generateToken.js";
 import { cookieOptions } from "../../helpers/tokens/cookieOptions.js";
+import { getIpInformation } from "../../helpers/utils/ipify.js";
+import { getLocationInformation } from "../../helpers/utils/location.js";
 
 const loginUser = async (req, res) => {
   try {
@@ -32,6 +34,11 @@ const loginUser = async (req, res) => {
         .status(400)
         .json({ error: true, message: "Email or password is wrong" });
     }
+
+    // const getIp = await getIpInformation();
+    // console.log("get ip", getIp);
+    // const getLocation = await getLocationInformation(getIp);
+    // console.log("get location", getLocation)
 
     // const checkUserEmailIsVerify = await user.checkEmail;
     // console.log("check email", checkUserEmailIsVerify);

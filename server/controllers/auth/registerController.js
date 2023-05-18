@@ -37,20 +37,6 @@ const registerUser = async (req, res) => {
 
     await data.save();
 
-    // const {
-    //   profilePicture,
-    //   bio,
-    //   title,
-    //   location,
-    //   skills,
-    //   phoneNumber,
-    //   portfolio,
-    //   workHours,
-    //   certifications,
-    //   linkedin,
-    //   instagram,
-    //   facebook,
-    // } = req.body;
 
     const profileInformation = new Profile({
       userId: data._id,
