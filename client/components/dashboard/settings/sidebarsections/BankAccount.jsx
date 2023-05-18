@@ -1,6 +1,6 @@
 import { AiFillEdit } from "react-icons/ai";
 
-export default function BankAccount({userData}) {
+export default function BankAccount({ userData }) {
   return (
     <div>
       <div className="flex justify-between w-full mb-10">
@@ -18,23 +18,23 @@ export default function BankAccount({userData}) {
             Hesap Türü
           </div>
           <div className="w-9/12 text-md text-gray-900 font-medium">
-            Bireysel Hesap
+            {userData.user[0].roles === "user" ? "Bireysel" : "Kurumsal"}
           </div>
         </div>
         <div className="w-full border-b flex justify-between items-center p-5">
-          <div className="w-3/12 text-lg text-gray-500 font-bold">
-            Ad & Soyad
-          </div>
+          <div className="w-3/12 text-lg text-gray-500 font-bold">Ad</div>
           <div className="w-9/12 text-md text-gray-900 font-medium">
-            Halit Uzan
+            {userData.user[0].firstName === null
+              ? "Girilmemiş"
+              : userData.user[0].firstName}
           </div>
         </div>
-        <div className="w-full flex border-b justify-between items-center p-5">
-          <div className="w-3/12 self-start text-lg text-gray-500 font-bold">
-            T.C. Kimlik No
-          </div>
+        <div className="w-full border-b flex justify-between items-center p-5">
+          <div className="w-3/12 text-lg text-gray-500 font-bold">Soyad</div>
           <div className="w-9/12 text-md text-gray-900 font-medium">
-            11111111111
+            {userData.user[0].lastName === null
+              ? "Girilmemiş"
+              : userData.user[0].lastName}
           </div>
         </div>
         <div className="w-full flex border-b justify-between items-center p-5">
@@ -42,15 +42,19 @@ export default function BankAccount({userData}) {
             Cep Telefonu
           </div>
           <div className="w-9/12 text-md text-gray-900 font-medium">
-            0555555555
+            {userData.profile.phoneNumber === null
+              ? " Girilmemiş "
+              : userData.profile.phoneNumber}
           </div>
         </div>
         <div className="w-full flex border-b justify-between items-center p-5">
           <div className="w-3/12 self-start text-lg text-gray-500 font-bold">
             IBAN
           </div>
-          <div className="w-9/12 text-md text-gray-900 font-bold">
-            TR1234567890123456
+          <div className="w-9/12 text-md text-gray-900 font-medium">
+            {userData.profile.iban === null
+              ? "Girilmemiş"
+              : userData.profile.iban}
           </div>
         </div>
         <div className="w-full flex justify-between items-center p-5">
@@ -58,8 +62,9 @@ export default function BankAccount({userData}) {
             Adres Bilgisi
           </div>
           <div className="w-9/12 text-md text-gray-900 font-medium">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum sint
-            vitae deserunt quam cum perspiciatis blanditiis at doloremque.{" "}
+            {userData.profile.address === null
+              ? "Girilmemiş"
+              : userData.profile.address}
           </div>
         </div>
       </div>

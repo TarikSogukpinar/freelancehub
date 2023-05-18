@@ -14,6 +14,7 @@ export default function ProfileButton({ bgColor, userData }) {
       router.push("/login");
     }
   };
+  console.log(userData);
 
   return (
     <div className={`flex relative justify-center items-center p-2 z-50`}>

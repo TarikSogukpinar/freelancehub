@@ -8,29 +8,26 @@ const profileSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
-    profilePicture: { type: String },
-    title: { type: String },
-    bio: { type: String },
-    location: { type: String },
-    skills: [
-      {
-        name: String,
-      },
-    ],
-    phoneNumber: { type: String },
+    profilePicture: { type: String, required: false, default: null },
+    title: { type: String, required: false, default: null },
+    bio: { type: String, required: false, default: null },
+    location: { type: String, required: false, default: null },
     portfolio: [
       {
         title: {
           type: String,
           required: false,
+          default: null,
         },
         description: {
           type: String,
           required: false,
+          default: null,
         },
         link: {
           type: String,
           required: false,
+          default: null,
         },
       },
     ],
@@ -39,14 +36,17 @@ const profileSchema = new mongoose.Schema(
         day: {
           type: String,
           required: false,
+          default: null,
         },
         from: {
           type: String,
           required: false,
+          default: null,
         },
         to: {
           type: String,
           required: false,
+          default: null,
         },
       },
     ],
@@ -55,14 +55,17 @@ const profileSchema = new mongoose.Schema(
         certificationsName: {
           type: String,
           required: false,
+          default: null,
         },
         certificationsTopic: {
           type: Date,
           required: false,
+          default: null,
         },
         certificationsDate: {
           type: String,
           required: false,
+          default: null,
         },
       },
     ],
@@ -71,20 +74,26 @@ const profileSchema = new mongoose.Schema(
         schoolName: {
           type: String,
           required: false,
+          default: null,
         },
         major: {
           type: Date,
           required: false,
+          default: null,
         },
         graduatedDate: {
           type: String,
           required: false,
+          default: null,
         },
       },
     ],
-    linkedin: { type: String },
-    instagram: { type: String },
-    facebook: { type: String },
+    linkedin: { type: String, required: false, default: null },
+    instagram: { type: String, required: false, default: null },
+    facebook: { type: String, required: false, default: null },
+    phoneNumber: { type: String, required: false, default: null },
+    iban: { type: String, required: false, default: null },
+    address: { type: String, required: false, default: null },
     createdAt: {
       type: String,
       default: moment().format("MMMM Do YYYY, h:mm:ss a"),

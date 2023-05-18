@@ -33,15 +33,15 @@ const loginUser = async (req, res) => {
         .json({ error: true, message: "Email or password is wrong" });
     }
 
-    const checkUserEmailIsVerify = await user.checkEmail;
-    console.log("check email", checkUserEmailIsVerify);
+    // const checkUserEmailIsVerify = await user.checkEmail;
+    // console.log("check email", checkUserEmailIsVerify);
 
-    if (!checkUserEmailIsVerify) {
-      return res.status(400).json({
-        error: true,
-        message: "Email is not a valid email please confirm your email!",
-      });
-    }
+    // if (!checkUserEmailIsVerify) {
+    //   return res.status(400).json({
+    //     error: true,
+    //     message: "Email is not a valid email please confirm your email!",
+    //   });
+    // }
 
     const token = await generateToken(user);
 

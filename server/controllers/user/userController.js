@@ -113,6 +113,7 @@ const passwordReset = async (req, res) => {
       error: false,
       message: "Password reset link sent to your email account",
     });
+    
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: true, message: error.message });

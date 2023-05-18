@@ -37,46 +37,37 @@ const registerUser = async (req, res) => {
 
     await data.save();
 
-    const {
-      profilePicture,
-      bio,
-      location,
-      skills,
-      phoneNumber,
-      portfolio,
-      workHours,
-      certifications,
-      linkedin,
-      instagram,
-      facebook,
-    } = req.body;
+    // const {
+    //   profilePicture,
+    //   bio,
+    //   title,
+    //   location,
+    //   skills,
+    //   phoneNumber,
+    //   portfolio,
+    //   workHours,
+    //   certifications,
+    //   linkedin,
+    //   instagram,
+    //   facebook,
+    // } = req.body;
 
     const profileInformation = new Profile({
       userId: data._id,
-      profilePicture: profilePicture,
-      bio: bio,
-      location: location,
-      skills: skills,
-      phoneNumber: phoneNumber,
-      portfolio: portfolio,
-      workHours: workHours,
-      certifications: certifications,
-      linkedin: linkedin,
-      instagram: instagram,
-      facebook: facebook,
+      ...req.body,
     });
 
     await profileInformation.save();
 
     //Verify Email
 
-    const secret = process.env.ACCESS_TOKEN_PRIVATE_KEY + data.password;
-    const token = jwt.sign({ email: data.email, id: data._id }, secret, {
-      expiresIn: "1h",
-    });
+    // const secret = process.env.ACCESS_TOKEN_PRIVATE_KEY + data.password;
+    // const token = jwt.sign({ email: data.email, id: data._id }, secret, {
+    //   expiresIn: "1h",
+    // });
 
-    const sendVerifyEmail = `${process.env.VERIFY_EMAIL_URL}/${data._id}/${token}/`;
-    await sendEmail(data.email, "Verify Email", sendVerifyEmail);
+    // const sendVerifyEmail = `${process.env.VERIFY_EMAIL_URL}/${data._id}/${token}/`;
+    // await sendEmail(data.email, "Verify Email", sendVerifyEmail);
 
     res.status(200).json({
       error: false,

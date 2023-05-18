@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema(
       default: "user",
       enum: ["user", "admin", "freelancer"],
     },
+    phoneNumber: { type: String, required: false },
     checkEmail: { type: Boolean, default: false },
     createdAt: {
       type: String,

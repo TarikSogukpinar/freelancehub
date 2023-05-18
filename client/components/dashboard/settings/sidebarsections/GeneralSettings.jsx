@@ -9,8 +9,7 @@ export default function GeneralSettings({ userData }) {
   const [profileInfo, setProfileInfo] = useState({
     firstName: userData?.user[0]?.firstName,
     lastName: userData?.user[0]?.lastName,
-    username: userData?.user[0]?.firstName, //gereksiz silinecek
-    phone: "0555555555",
+    phone: userData.profile.phoneNumber,
     email: userData?.user[0]?.email,
     image: "/images/profile.jpg",
     job: "Yazılımcı",
@@ -266,10 +265,8 @@ export default function GeneralSettings({ userData }) {
             </div>
             <div className="flex flex-col ml-5 w-full">
               <div className="pb-5 border-b">
-                <h2 className="text-3xl pb-3 text-indigo-900 font-bold">
-                  {profileInfo.username}
-                </h2>
-                <p className="text-xl text-gray-500 font-bold">
+                <p className="text-3xl pb-3 text-indigo-900 font-bold">
+                  Hoşgeldiniz{" "}
                   {profileInfo.firstName + " " + profileInfo.lastName}
                 </p>
               </div>
@@ -286,6 +283,7 @@ export default function GeneralSettings({ userData }) {
         </div>
       )}
       {hash === "contact" ? (
+        //Form page is starting here
         <div>
           <div className="flex justify-between w-full mb-10">
             <h2
@@ -310,7 +308,7 @@ export default function GeneralSettings({ userData }) {
                   id="email"
                   className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
                   placeholder="Email"
-                  value={profileInfo.email}
+                  value={profileInfo.email === null ? "Email bilgisine ulaşılamadı" : profileInfo.email}
                   onChange={profileHandler}
                   required
                 />
@@ -328,7 +326,61 @@ export default function GeneralSettings({ userData }) {
                   id="phone"
                   className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
                   placeholder="Telefon"
-                  value={profileInfo.phone}
+                  value={userData.profile.phoneNumber}
+                  onChange={profileHandler}
+                  required
+                />
+              </div>
+              <div className="my-2 flex justify-between items-start">
+                <label
+                  htmlFor="phone"
+                  className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
+                >
+                  Linkedin
+                </label>
+                <input
+                  type="text"
+                  name="linkedin"
+                  id="linkedin"
+                  className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
+                  placeholder="Linkedin"
+                  value={userData.profile.linkedin}
+                  onChange={profileHandler}
+                  required
+                />
+              </div>
+              <div className="my-2 flex justify-between items-start">
+                <label
+                  htmlFor="phone"
+                  className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
+                >
+                  Instagram
+                </label>
+                <input
+                  type="text"
+                  name="instagram"
+                  id="instagram"
+                  className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
+                  placeholder="instagram"
+                  value={userData.profile.instagram}
+                  onChange={profileHandler}
+                  required
+                />
+              </div>
+              <div className="my-2 flex justify-between items-start">
+                <label
+                  htmlFor="facebook"
+                  className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
+                >
+                  Facebook
+                </label>
+                <input
+                  type="text"
+                  name="facebook"
+                  id="facebook"
+                  className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
+                  placeholder="Facebook"
+                  value={userData.profile.facebook}
                   onChange={profileHandler}
                   required
                 />
@@ -388,20 +440,52 @@ export default function GeneralSettings({ userData }) {
                 Cep Numarası
               </div>
               <div className="w-9/12 text-md text-gray-900 font-medium">
-                0555555555{" "}
+                {userData.profile.phoneNumber === null
+                  ? "Girilmemiş"
+                  : userData.profile.phoneNumber}
               </div>
             </div>
             <div className="w-full flex justify-between items-center p-5">
               <div className="w-3/12 self-start text-lg text-gray-500 font-bold">
-                Freelancer Hattı
+                Linkedin
               </div>
               <div className="w-9/12 text-md text-gray-900 font-medium">
-                Bionluk Freelancer Hattı sayesinde kişisel numaranı
-                paylaşmaksızın cep telefonun üzerinden tüm Bionluk
-                kullanıcılarıyla güvenle görüşmeye başlayabilirsin. Ayrıntılı
-                bilgi için destek sayfamızı ziyaret edebilirsin.
+                {userData.profile.linkedin === null
+                  ? "Girilmemiş"
+                  : userData.profile.linkedin}
               </div>
             </div>
+            <div className="w-full flex justify-between items-center p-5">
+              <div className="w-3/12 self-start text-lg text-gray-500 font-bold">
+                Instagram
+              </div>
+              <div className="w-9/12 text-md text-gray-900 font-medium">
+                {userData.profile.instagram === null
+                  ? "Girilmemiş"
+                  : userData.profile.instagram}
+              </div>
+            </div>
+            <div className="w-full flex justify-between items-center p-5">
+              <div className="w-3/12 self-start text-lg text-gray-500 font-bold">
+                Facebook
+              </div>
+              <div className="w-9/12 text-md text-gray-900 font-medium">
+                {userData.profile.facebook === null
+                  ? "Girilmemiş"
+                  : userData.profile.facebook}
+              </div>
+            </div>
+            <div className="w-full flex justify-between items-center p-5">
+              <div className="w-3/12 self-start text-lg text-gray-500 font-bold">
+                Adres
+              </div>
+              <div className="w-9/12 text-md text-gray-900 font-medium">
+                {userData.profile.address === null
+                  ? "Girilmemiş"
+                  : userData.profile.address}
+              </div>
+            </div>
+            
           </div>
         </div>
       )}
@@ -588,7 +672,11 @@ export default function GeneralSettings({ userData }) {
                     const date = new Date();
                     const year = date.getFullYear();
                     return (
-                      <option defaultChecked value={2023 - index} key={2023 - index}>
+                      <option
+                        defaultChecked
+                        value={2023 - index}
+                        key={2023 - index}
+                      >
                         {Number(year) - index}
                       </option>
                     );
