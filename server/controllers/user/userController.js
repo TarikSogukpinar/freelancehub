@@ -96,6 +96,8 @@ const updateUserById = async (req, res) => {
   }
 };
 
+
+
 const passwordReset = async (req, res) => {
   try {
     const { error } = passwordResetValidationSchema(req.body);

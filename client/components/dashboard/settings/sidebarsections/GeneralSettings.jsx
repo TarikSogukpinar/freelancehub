@@ -4,6 +4,7 @@ import { AiFillEdit, AiOutlinePlus } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import AccountSettings from "./AccountSettings";
+import { updateContactInformation } from "@/services/profileService";
 
 export default function GeneralSettings({ userData }) {
   const [profileInfo, setProfileInfo] = useState({
@@ -40,6 +41,7 @@ export default function GeneralSettings({ userData }) {
     title: "Jr. Full Stack Developer",
     bio: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum facilis doloribus quam necessitatibus. Vero vitae labore et quidem enim error accusamus temporibus dolorum qui, rerum atque dolorem delectus ipsum ullam.",
   });
+
   const [searchSkills, setSearchSkills] = useState("");
   const [educationCategory, setEducationCategory] = useState("education");
   const [education, setEducation] = useState({
@@ -98,6 +100,42 @@ export default function GeneralSettings({ userData }) {
   }, [asPath]);
 
   /* Hooks END*/
+
+  const [updateContactFields, setUpdateContactFields] = useState({
+    phoneNumber: "",
+    linkedin: "",
+    instagram: "",
+    facebook: "",
+    address: "",
+  });
+
+  const handleUpdateFields = (e) => {
+    setUpdateContactFields((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await updateContactInformation(
+        updateContactFields.phoneNumber,
+        updateContactFields.linkedin,
+        updateContactFields.instagram,
+        updateContactFields.facebook,
+        updateContactFields.address
+      )
+        .then((res) => {
+          console.log("update başarılı");
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -285,126 +323,145 @@ export default function GeneralSettings({ userData }) {
       {hash === "contact" ? (
         //Form page is starting here
         <div>
-          <div className="flex justify-between w-full mb-10">
-            <h2
-              className="text-3xl text-gray-500 cursor-default font-bold"
-              id="general-settings"
-            >
-              İletişim Ayarları
-            </h2>{" "}
-          </div>
-          <div className="bg-white p-10 mb-10 flex flex-col justify-start items-start w-full ">
-            <div className="w-1/2">
-              <div className="my-2 flex justify-between items-start">
-                <label
-                  htmlFor="email"
-                  className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
+          <form type="submit" onSubmit={handleSubmit}>
+            <div>
+              <div className="flex justify-between w-full mb-10">
+                <h2
+                  className="text-3xl text-gray-500 cursor-default font-bold"
+                  id="general-settings"
                 >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
-                  placeholder="Email"
-                  value={profileInfo.email === null ? "Email bilgisine ulaşılamadı" : profileInfo.email}
-                  onChange={profileHandler}
-                  required
-                />
+                  İletişim Ayarları 1
+                </h2>{" "}
               </div>
-              <div className="my-2 flex justify-between items-start">
-                <label
-                  htmlFor="phone"
-                  className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
-                >
-                  Telefon
-                </label>
-                <input
-                  type="text"
-                  name="phone"
-                  id="phone"
-                  className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
-                  placeholder="Telefon"
-                  value={userData.profile.phoneNumber}
-                  onChange={profileHandler}
-                  required
-                />
-              </div>
-              <div className="my-2 flex justify-between items-start">
-                <label
-                  htmlFor="phone"
-                  className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
-                >
-                  Linkedin
-                </label>
-                <input
-                  type="text"
-                  name="linkedin"
-                  id="linkedin"
-                  className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
-                  placeholder="Linkedin"
-                  value={userData.profile.linkedin}
-                  onChange={profileHandler}
-                  required
-                />
-              </div>
-              <div className="my-2 flex justify-between items-start">
-                <label
-                  htmlFor="phone"
-                  className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
-                >
-                  Instagram
-                </label>
-                <input
-                  type="text"
-                  name="instagram"
-                  id="instagram"
-                  className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
-                  placeholder="instagram"
-                  value={userData.profile.instagram}
-                  onChange={profileHandler}
-                  required
-                />
-              </div>
-              <div className="my-2 flex justify-between items-start">
-                <label
-                  htmlFor="facebook"
-                  className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
-                >
-                  Facebook
-                </label>
-                <input
-                  type="text"
-                  name="facebook"
-                  id="facebook"
-                  className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
-                  placeholder="Facebook"
-                  value={userData.profile.facebook}
-                  onChange={profileHandler}
-                  required
-                />
+              <div className="bg-white p-10 mb-10 flex flex-col justify-start items-start w-full ">
+                <div className="w-1/2">
+                  <div className="my-2 flex justify-between items-start">
+                    <label
+                      htmlFor="email"
+                      className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
+                    >
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
+                      placeholder="Email"
+                      value={
+                        profileInfo.email === null
+                          ? "Email bilgisine ulaşılamadı"
+                          : profileInfo.email
+                      }
+                      onChange={handleUpdateFields}
+                    />
+                  </div>
+                  <div className="my-2 flex justify-between items-start">
+                    <label
+                      htmlFor="phone"
+                      className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
+                    >
+                      Telefon
+                    </label>
+                    <input
+                      type="number"
+                      name="phoneNumber"
+                      id="phoneNumber"
+                      className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
+                      placeholder="Telefon"
+                      value={updateContactFields.phoneNumber}
+                      onChange={handleUpdateFields}
+                    />
+                  </div>
+                  <div className="my-2 flex justify-between items-start">
+                    <label
+                      htmlFor="phone"
+                      className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
+                    >
+                      Linkedin
+                    </label>
+                    <input
+                      type="text"
+                      name="linkedin"
+                      id="linkedin"
+                      className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
+                      placeholder="Linkedin"
+                      value={updateContactFields.linkedin}
+                      onChange={handleUpdateFields}
+                    />
+                  </div>
+                  <div className="my-2 flex justify-between items-start">
+                    <label
+                      htmlFor="phone"
+                      className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
+                    >
+                      Instagram
+                    </label>
+                    <input
+                      type="text"
+                      name="instagram"
+                      id="instagram"
+                      className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
+                      placeholder="instagram"
+                      value={updateContactFields.instagram}
+                      onChange={handleUpdateFields}
+                    />
+                  </div>
+                  <div className="my-2 flex justify-between items-start">
+                    <label
+                      htmlFor="facebook"
+                      className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
+                    >
+                      Facebook
+                    </label>
+                    <input
+                      type="text"
+                      name="facebook"
+                      id="facebook"
+                      className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
+                      placeholder="Facebook"
+                      value={updateContactFields.facebook}
+                      onChange={handleUpdateFields}
+                    />
+                  </div>
+                  <div className="my-2 flex justify-between items-start">
+                    <label
+                      htmlFor="address"
+                      className="p-2.5 mx-2 text-lg text-gray-500 font-bold"
+                    >
+                      Adres
+                    </label>
+                    <input
+                      type="text"
+                      name="address"
+                      id="address"
+                      className="bg-gray-50 border border-gray-300 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-1/2 p-2.5 mx-2 font-semibold self-end"
+                      placeholder="Adres"
+                      value={updateContactFields.address}
+                      onChange={handleUpdateFields}
+                    />
+                  </div>
+                </div>
+                <div className="py-5 w-full flex justify-end items-center">
+                  <button
+                    type="button"
+                    className="font-medium mx-2 text-indigo-900 hover:text-white bg-white border border-gray-500 px-8 py-3 text-lg hover:bg-indigo-700 shadow-lg"
+                    onClick={() => {
+                      setHash(null);
+                    }}
+                  >
+                    İptal
+                  </button>
+                  <button
+                    type="submit"
+                    className="font-medium mx-2 text-white bg-indigo-900 border border-gray-500 px-8 py-3 text-lg hover:bg-indigo-700 shadow-lg"
+                  >
+                    Bilgileri Güncelle
+                  </button>
+                </div>
               </div>
             </div>
-            <div className="py-5 w-full flex justify-end items-center">
-              <button
-                className="font-medium mx-2 text-indigo-900 hover:text-white bg-white border border-gray-500 px-8 py-3 text-lg hover:bg-indigo-700 shadow-lg"
-                onClick={() => {
-                  setHash(null);
-                }}
-              >
-                İptal
-              </button>
-              <button
-                className="font-medium mx-2 text-white bg-indigo-900 border border-gray-500 px-8 py-3 text-lg hover:bg-indigo-700 shadow-lg"
-                onClick={() => {
-                  setHash(null);
-                }}
-              >
-                Kaydet
-              </button>
-            </div>
-          </div>
+          </form>
         </div>
       ) : (
         <div>
@@ -413,7 +470,7 @@ export default function GeneralSettings({ userData }) {
               className="text-3xl text-gray-500 cursor-default font-bold"
               id="contact"
             >
-              İletişim Ayarları
+              İletişim Ayarları 2
             </h2>{" "}
             <span className="flex justify-center items-center cursor-pointer hover:underline text-indigo-900">
               <AiFillEdit className="text-xl" />{" "}
@@ -485,7 +542,6 @@ export default function GeneralSettings({ userData }) {
                   : userData.profile.address}
               </div>
             </div>
-            
           </div>
         </div>
       )}
@@ -801,7 +857,7 @@ export default function GeneralSettings({ userData }) {
         </div>
       )}
 
-      <AccountSettings/>
+      <AccountSettings />
     </div>
   );
 }

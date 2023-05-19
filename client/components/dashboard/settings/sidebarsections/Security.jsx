@@ -3,9 +3,10 @@ import axios from "axios";
 import { ThreeDots } from "react-loading-icons";
 import { logoutUser } from "@/services/authService";
 import { useRouter } from "next/router";
+import { getUserLocationInformation } from "@/services/userService";
 
 export default function Security() {
-  const router = useRouter()
+  const router = useRouter();
   const [changePassword, setChangePasword] = useState({
     currentPassword: "",
     newPassword: "",
@@ -15,10 +16,7 @@ export default function Security() {
   const [userIpInformation, setUserIpInformation] = useState(null);
 
   const getUserInformation = async () => {
-    const res = await axios.get(
-      "http://localhost:5000/api/user/getUserLocationInformation",
-      { withCredentials: true }
-    );
+    const res = await getUserLocationInformation();
     setUserInformation(res.data.getLocation);
     setUserIpInformation(res.data.getIp);
   };
@@ -172,7 +170,9 @@ export default function Security() {
                   </span>
                 </div>
               </div>
-              <button className="text-lg font-medium" onClick={removeCookie}>Oturumu Kapat</button>
+              <button className="text-lg font-medium" onClick={removeCookie}>
+                Oturumu Kapat
+              </button>
             </div>
           </div>
         </div>

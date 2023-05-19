@@ -3,8 +3,6 @@ import bcrypt from "bcryptjs";
 import loginValidation from "../../validations/authValidation/loginValidationSchema.js";
 import { generateToken } from "../../helpers/tokens/generateToken.js";
 import { cookieOptions } from "../../helpers/tokens/cookieOptions.js";
-import { getIpInformation } from "../../helpers/utils/ipify.js";
-import { getLocationInformation } from "../../helpers/utils/location.js";
 
 const loginUser = async (req, res) => {
   try {
