@@ -4,7 +4,7 @@ import { verifyToken } from "../../middleware/verifyTokens/verifyTokens.js";
 
 const router = Router();
 
-router.put(
+router.post(
   "/updateContactInformation",
   verifyToken,
   profileController.updateContactInformation
