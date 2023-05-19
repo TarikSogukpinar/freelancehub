@@ -35,14 +35,6 @@ const getUserLocationInformation = async (req, res) => {
     console.log("lokasyon bilgisi", getLocation);
     console.log("ip", getIp);
 
-    if (getIp === null || getIp === undefined) {
-      return res.status(404).json({ error: true, message: "Ip not found" });
-    }
-    if (getLocation === null || getLocation === undefined) {
-      return res
-        .status(404)
-        .json({ error: true, message: "Location not found" });
-    }
 
     res.json({ getLocation, getIp });
   } catch (error) {
