@@ -13,6 +13,12 @@ router.get(
 );
 
 router.get(
+  "/getUserLocationInformation",
+  verifyToken,
+  userController.getUserLocationInformation
+);
+
+router.get(
   "/getUserById/:id",
   verifyToken,
   verifyRoles("admin"),

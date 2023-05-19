@@ -11,7 +11,6 @@ const profileSchema = new mongoose.Schema(
     profilePicture: { type: String, required: false, default: null },
     title: { type: String, required: false, default: null },
     bio: { type: String, required: false, default: null },
-    location: { type: String, required: false, default: null },
     portfolio: [
       {
         title: {

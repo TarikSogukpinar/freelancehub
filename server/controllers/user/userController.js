@@ -3,6 +3,8 @@ import Profile from "../../models/Profile.js";
 import passwordResetValidationSchema from "../../validations/userValidation/passwordResetValidationSchema.js";
 import jwt from "jsonwebtoken";
 import sendEmail from "../../helpers/sendEmail/sendEmail.js";
+import { getIpInformation } from "../../helpers/utils/ipify.js";
+import { getLocationInformation } from "../../helpers/utils/location.js";
 
 const getAllUser = async (req, res) => {
   const page = Number(req.query.pageNumber) || 1;
@@ -20,6 +22,17 @@ const getAllUser = async (req, res) => {
       total: count,
       allUsers: getAllUser,
     });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: true, message: error.message });
+  }
+};
+
+const getUserLocationInformation = async (req, res) => {
+  try {
+    const getIp = await getIpInformation();
+    const getLocation = await getLocationInformation(getIp);
+    res.json(getLocation);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: true, message: error.message });
@@ -53,7 +66,7 @@ const getUser = async (req, res) => {
       user: user,
       profile: profile,
     };
-    console.log(data)
+    console.log(data);
 
     res.json(data);
   } catch (error) {
@@ -113,7 +126,6 @@ const passwordReset = async (req, res) => {
       error: false,
       message: "Password reset link sent to your email account",
     });
-    
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: true, message: error.message });
@@ -151,4 +163,5 @@ export default {
   passwordReset,
   deleteUserById,
   getUser,
+  getUserLocationInformation,
 };

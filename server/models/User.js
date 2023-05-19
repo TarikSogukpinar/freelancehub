@@ -13,10 +13,6 @@ const userSchema = new mongoose.Schema(
       default: "user",
       enum: ["user", "admin", "freelancer"],
     },
-    ipInformation: {
-      ipAddress: { type: String, required: false, default: null },
-      locationInformation: { type: String, required: false, default: null },
-    },
     checkEmail: { type: Boolean, default: false },
     createdAt: {
       type: String,

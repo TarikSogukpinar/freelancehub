@@ -35,11 +35,6 @@ const loginUser = async (req, res) => {
         .json({ error: true, message: "Email or password is wrong" });
     }
 
-    // const getIp = await getIpInformation();
-    // console.log("get ip", getIp);
-    // const getLocation = await getLocationInformation(getIp);
-    // console.log("get location", getLocation)
-
     // const checkUserEmailIsVerify = await user.checkEmail;
     // console.log("check email", checkUserEmailIsVerify);
 

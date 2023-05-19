@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Security() {
   const [changePassword, setChangePasword] = useState({
@@ -7,6 +8,23 @@ export default function Security() {
     newPassword: "",
     confirmNewPassword: "",
   });
+  const [userInformation, setUserInformation] = useState({});
+
+  const getUserInformation = async () => {
+    const res = await axios.get(
+      "http://localhost:5000/api/user/getUserLocationInformation",
+      { withCredentials: true }
+    );
+    console.log("data burda", res.data);
+    setUserInformation(res.data);
+  };
+
+  useEffect(() => {
+    getUserInformation();
+  }, []);
+
+  console.log("user info", userInformation);
+
   const [session, setSession] = useState([
     {
       id: 1,
@@ -157,8 +175,8 @@ export default function Security() {
                       {s.icon}
                     </div>
                     <div className="flex flex-col city text-lg ml-2 font-bold text-gray-600">
-                      <span>Şehir: {s.city}</span>
-                      <span>Tarih: {s.time}</span>
+                      <span>Şehir: {userInformation.city}</span>
+                      <span>Time Zone: {userInformation.timezone}</span>
                     </div>
                   </div>
                   <button className="text-lg font-medium">Oturumu Kapat</button>
