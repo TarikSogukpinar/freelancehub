@@ -32,7 +32,19 @@ const getUserLocationInformation = async (req, res) => {
   try {
     const getIp = await getIpInformation();
     const getLocation = await getLocationInformation(getIp);
-    res.json({getLocation, getIp});
+    console.log("lokasyon bilgisi", getLocation);
+    console.log("ip", getIp);
+
+    if (getIp === null || getIp === undefined) {
+      return res.status(404).json({ error: true, message: "Ip not found" });
+    }
+    if (getLocation === null || getLocation === undefined) {
+      return res
+        .status(404)
+        .json({ error: true, message: "Location not found" });
+    }
+
+    res.json({ getLocation, getIp });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: true, message: error.message });
@@ -66,7 +78,6 @@ const getUser = async (req, res) => {
       user: user,
       profile: profile,
     };
-    console.log(data);
 
     res.json(data);
   } catch (error) {
