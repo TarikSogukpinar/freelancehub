@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { logoutUser } from "@/services/authService";
 export default function ProfileButton({ bgColor, userData }) {
   const router = useRouter();
+  console.log(userData)
   const [showProfile, setShowProfile] = useState(false);
 
   const removeCookie = async () => {
