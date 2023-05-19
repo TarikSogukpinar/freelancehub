@@ -12,7 +12,7 @@ export default function MainSection({userData}) {
             <div className="flex justify-between items-center w-full">
               <h2 className="font-bold text-2xl">Portfolyo</h2>
               <Link
-                href={"/"}
+                href={"/dashboard/panel"}
                 className="text-lime-600 font-bold hover:underline"
               >
                 {" "}
@@ -66,7 +66,7 @@ export default function MainSection({userData}) {
             <div className="flex justify-between items-center w-full">
               <h2 className="font-bold text-2xl">Verdiğin Hizmetler</h2>{" "}
               <Link
-                href={"/"}
+                href={"/dashboard/panel"}
                 className="text-lime-600 font-bold hover:underline"
               >
                 Tüm ilanlarına git
@@ -83,7 +83,7 @@ export default function MainSection({userData}) {
               </p>
               <Link
                 className="my-10 font-medium text-white bg-indigo-900 border border-gray-500 px-10 py-4 text-xl hover:bg-indigo-700 shadow-lg"
-                href={"/"}
+                href={"/dashboard/panel"}
               >
                 İlanları Yönet
               </Link>

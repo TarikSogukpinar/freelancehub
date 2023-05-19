@@ -14,8 +14,8 @@ export default function PanelSidebar({ mainSections, setMainSections }) {
         <div
           className={
             mainSections === "MyPanelHome"
-              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer"
-              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer"
+              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer my-2"
+              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer my-2"
           }
         >
           <div
@@ -30,8 +30,8 @@ export default function PanelSidebar({ mainSections, setMainSections }) {
         <div
           className={
             mainSections === "MyOrders"
-              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer"
-              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer"
+              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer my-2"
+              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer my-2"
           }
         >
           <div
@@ -46,8 +46,8 @@ export default function PanelSidebar({ mainSections, setMainSections }) {
         <div
           className={
             mainSections === "MySpecialBuyer"
-              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer"
-              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer"
+              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer my-2"
+              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer my-2"
           }
         >
           <div
@@ -62,8 +62,8 @@ export default function PanelSidebar({ mainSections, setMainSections }) {
         <div
           className={
             mainSections === "MyLists"
-              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer"
-              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer"
+              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer my-2"
+              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer my-2"
           }
         >
           <div
@@ -78,8 +78,8 @@ export default function PanelSidebar({ mainSections, setMainSections }) {
         <div
           className={
             mainSections === "MyBalance"
-              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer"
-              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer"
+              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer my-2"
+              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer my-2"
           }
         >
           <div
@@ -94,8 +94,8 @@ export default function PanelSidebar({ mainSections, setMainSections }) {
         <div
           className={
             mainSections === "MySales"
-              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer"
-              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer"
+              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer my-2"
+              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer my-2"
           }
         >
           <div
@@ -110,8 +110,8 @@ export default function PanelSidebar({ mainSections, setMainSections }) {
         <div
           className={
             mainSections === "MyBoard"
-              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer"
-              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer"
+              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer my-2"
+              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer my-2"
           }
         >
           <div
@@ -126,8 +126,8 @@ export default function PanelSidebar({ mainSections, setMainSections }) {
         <div
           className={
             mainSections === "MyPortfolio"
-              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer"
-              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer"
+              ? "pr-10 border-r-2  hover:border-r-2 border-indigo-900 text-indigo-900 cursor-pointer my-2"
+              : "pr-10 border-r-2 border-white hover:border-r-2 text-gray-500 hover:border-lime-600 cursor-pointer my-2"
           }
         >
           <div

@@ -152,7 +152,7 @@ export default function Navbar({ userData }) {
                       <Link
                         href={sub.url}
                         key={sub.subId}
-                        className="flex justify-start items-start"
+                        className="flex justify-start items-start hover:underline"
                       >
                         {sub.name}
                       </Link>
