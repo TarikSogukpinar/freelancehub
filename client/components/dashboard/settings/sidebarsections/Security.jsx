@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { ThreeDots } from "react-loading-icons";
+import { logoutUser } from "@/services/authService";
+import { useRouter } from "next/router";
 
 export default function Security() {
+  const router = useRouter()
   const [changePassword, setChangePasword] = useState({
     currentPassword: "",
     newPassword: "",
     confirmNewPassword: "",
   });
-  const [userInformation, setUserInformation] = useState([]);
+  const [userInformation, setUserInformation] = useState({});
   const [userIpInformation, setUserIpInformation] = useState(null);
 
   const getUserInformation = async () => {
@@ -17,6 +21,12 @@ export default function Security() {
     );
     setUserInformation(res.data.getLocation);
     setUserIpInformation(res.data.getIp);
+  };
+  const removeCookie = async () => {
+    const data = await logoutUser();
+    if (data.status === 200) {
+      router.push("/login");
+    }
   };
 
   useEffect(() => {
@@ -136,12 +146,33 @@ export default function Security() {
                   </svg>
                 </div>
                 <div className="flex flex-col city text-lg ml-2 font-bold text-gray-600">
-                  <span>Şehir: {userInformation.city}</span>
-                  <span>Time Zone: {userInformation.timezone}</span>
-                  <span>IP: {userIpInformation}</span>
+                  <span className="flex justify-start items-center">
+                    Şehir:{" "}
+                    {userInformation.city ? (
+                      userInformation.city
+                    ) : (
+                      <ThreeDots fill="#000" height={"0.7em"} />
+                    )}
+                  </span>
+                  <span className="flex justify-start items-center">
+                    Time Zone:{" "}
+                    {userInformation.timezone ? (
+                      userInformation.timezone
+                    ) : (
+                      <ThreeDots fill="#000" height={"0.7em"} />
+                    )}
+                  </span>
+                  <span className="flex justify-start items-center">
+                    IP:{" "}
+                    {userIpInformation ? (
+                      userIpInformation
+                    ) : (
+                      <ThreeDots fill="#000" height={"0.7em"} />
+                    )}
+                  </span>
                 </div>
               </div>
-              <button className="text-lg font-medium">Oturumu Kapat</button>
+              <button className="text-lg font-medium" onClick={removeCookie}>Oturumu Kapat</button>
             </div>
           </div>
         </div>
