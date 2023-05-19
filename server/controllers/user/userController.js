@@ -32,7 +32,7 @@ const getUserLocationInformation = async (req, res) => {
   try {
     const getIp = await getIpInformation();
     const getLocation = await getLocationInformation(getIp);
-    res.json(getLocation);
+    res.json({getLocation, getIp});
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: true, message: error.message });
