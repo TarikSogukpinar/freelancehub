@@ -1,8 +1,15 @@
 import Head from "next/head";
 import HomePage from "../../components/HomePage";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUserData } from "@/store/slices/userdata.slice";
 
-export default function Home({ cookies,userData }) {
-  console.log(userData);
+export default function Home({ cookies, userData }) {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setUserData(userData));
+  }, []);
+
   return (
     <>
       <Head>

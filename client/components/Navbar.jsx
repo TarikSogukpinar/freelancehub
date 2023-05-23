@@ -2,9 +2,7 @@ import Link from "next/link";
 import { useState } from "react";
 import ProfileButton from "./ProfileButton";
 
-export default function Navbar({ cookies, userData }) {
-  console.log(cookies)
-  console.log(userData)
+export default function Navbar({ cookies }) {
   const [cookieData, setCookieData] = useState(cookies ? cookies : null);
   const [showMenu, setShowMenu] = useState(false);
 
@@ -19,7 +17,7 @@ export default function Navbar({ cookies, userData }) {
           </Link>
 
           {cookies ? (
-            <ProfileButton userData={userData} bgColor={"white"} />
+            <ProfileButton bgColor={"white"} />
           ) : (
             <div className="flex md:order-2">
               <Link
@@ -63,7 +61,7 @@ export default function Navbar({ cookies, userData }) {
       </nav>
       {cookies ? (
         <div className="flex-initinal mt-2 mr-2 sm:hidden">
-          <ProfileButton userData={userData} />
+          <ProfileButton />
         </div>
       ) : (
         <button

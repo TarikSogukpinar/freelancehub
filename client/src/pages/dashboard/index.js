@@ -3,10 +3,18 @@ import Sidebar from "@/components/dashboard/home/Sidebar";
 import MainSection from "@/components/dashboard/home/MainSection";
 import Footer from "@/components/Footer";
 import Head from "next/head";
+import { useDispatch } from "react-redux";
+import { setUserData } from "@/store/slices/userdata.slice";
+import { useEffect } from "react";
 
-Footer
+Footer;
 export default function Dashboard({ userData }) {
-  console.log(userData);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setUserData(userData));
+  }, []);
+
   return (
     <>
       <Head>
